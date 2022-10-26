@@ -1,0 +1,38 @@
+.section__title {
+  margin: 2rem 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.relative__keyword {
+  display: inline-block;
+}
+
+.relative__keyword span {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
+
+.keyword__element {
+  border: 1px solid gray;
+  padding: 1rem 0;
+}
+
+.show__more {
+  float: right;
+  margin-right: 1rem;
+}
+
+.searchWords__list li {
+  width: 768px;
+}
+
+.searchWords_time {
+  margin: 0.5rem 0;
+}
+
+.main__keyword {
+  font-weight: bold;
+}
