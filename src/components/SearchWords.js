@@ -1,5 +1,7 @@
 import classes from "./SearchWords.module.css";
 import { useState } from "react";
+import CSSTransition from "react-transition-group/CSSTransition";
+// import "./transition.css";
 
 const SearchWords = () => {
   const [isActive, setIsActive] = useState(false);
@@ -23,7 +25,20 @@ const SearchWords = () => {
               <span>김연아 결혼</span>
             </div>
             <span className={classes.show__more}>더보기</span>
-            {isActive && <div className="keyword__detail">dddd</div>}
+            <CSSTransition
+              in={isActive}
+              timeout={500}
+              unmountOnExit
+              mountOnEnter
+              classNames={{
+                enterActive: classes.openAccordion,
+                exitActive: classes.closeArccordion,
+              }}
+            >
+              <div className={classes.keyword__detail}>
+                <p>ppp</p>
+              </div>
+            </CSSTransition>
           </div>
         </li>
       </ul>

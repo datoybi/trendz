@@ -36,3 +36,40 @@
 .main__keyword {
   font-weight: bold;
 }
+.keyword__detail {
+  border: 1px solid tomato;
+}
+
+@keyframes showDetail {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeDetail {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.openAccordion {
+  animation: showDetail 0.5s ease-out forwards;
+}
+
+.closeArccordion {
+  animation: closeDetail 0.5s ease-out forwards;
+}
