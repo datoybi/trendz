@@ -1,9 +1,9 @@
-import classes from "./SearchWords.module.css";
+import classes from "./TrendKeyword.module.css";
 import { useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 // import "./transition.css";
 
-const SearchWords = () => {
+const TrendKeyword = () => {
   const [isActive, setIsActive] = useState(false);
 
   const showMoreHandler = () => {
@@ -17,7 +17,7 @@ const SearchWords = () => {
       </h2>
       <ul className={classes.searchWords__list}>
         <li>
-          <p className={classes.searchWords_time}>2022년 10월 26일</p>
+          <p className={classes.searchWords_date}>2022년 10월 26일</p>
           <div className={classes.keyword__element} onClick={showMoreHandler}>
             <span className={classes.main__keyword}>김연아</span>
             <div className={classes.relative__keyword}>
@@ -46,4 +46,4 @@ const SearchWords = () => {
   );
 };
 
-export default SearchWords;
+export default TrendKeyword;

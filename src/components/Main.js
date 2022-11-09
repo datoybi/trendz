@@ -1,4 +1,4 @@
-import SearchWords from "./SearchWords";
+import TrendKeyword from "./TrendKeyword";
 import NewsTrend from "./NewsTrend";
 import classes from "./Main.module.css";
 
@@ -6,8 +6,8 @@ const Main = () => {
   return (
     <main>
       <article>
-        <SearchWords />
-        <NewsTrend />
+        <TrendKeyword />
+        {/* <NewsTrend /> */}
       </article>
     </main>
   );
