@@ -1,14 +1,18 @@
 import classes from "./TrendKeyword.module.css";
 import { useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
-// import "./transition.css";
+import { useSelector } from "react-redux";
+import { fetchData } from "../store/actions";
 
 const TrendKeyword = () => {
   const [isActive, setIsActive] = useState(false);
+  const { keywords, keywordsIndex } = useSelector((state) => state.trend);
 
   const showMoreHandler = () => {
     setIsActive(!isActive);
   };
+
+  console.log(keywords);
 
   return (
     <section>
