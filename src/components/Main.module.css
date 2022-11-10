@@ -3,5 +3,5 @@ main {
   display: flex;
   border: 1px solid gray;
   margin-top: 60px;
-  height: 1600px;
+  /* height: 1600px; */
 }

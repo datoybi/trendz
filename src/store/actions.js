@@ -7,12 +7,11 @@ const API_URL = "/trends/trendingsearches/daily/rss?geo=KR";
 export const fetchKeyword = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
-      const { data } = await axios.get(API_URL);
-
-      if (!data) {
+      const { responseData } = await axios.get(API_URL);
+      if (!responseData) {
         throw new Error("Could not fetch data!");
       }
-      return data;
+      return responseData;
     };
 
     try {
@@ -20,6 +19,7 @@ export const fetchKeyword = () => {
       const $ = cheerio.load(htmlString);
       const result = [];
 
+      // 여기서부터 json 만드는거 추출 - 리펙토링이 가능할 것만 같아
       $("item").each(function (index, el) {
         const pubDate = $(el).children("pubDate").text();
         const keyword = $(el).children("title").text();
@@ -44,6 +44,7 @@ export const fetchKeyword = () => {
       dispatch(actions.replaceKeyWord(result));
     } catch (error) {
       console.log(error || "Something went wrong");
+      // 나중에 에러처리도 해주기
     }
   };
 };

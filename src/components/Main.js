@@ -1,11 +1,11 @@
-import TrendKeyword from "./TrendKeyword";
+import TrendKeywords from "./TrendKeywords";
 import classes from "./Main.module.css";
 
 const Main = () => {
   return (
     <main>
       <article>
-        <TrendKeyword />
+        <TrendKeywords />
         {/* <NewsTrend /> */}
       </article>
     </main>

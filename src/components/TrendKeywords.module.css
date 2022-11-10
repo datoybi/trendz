@@ -17,10 +17,20 @@
 
 .keyword__element {
   border: 1px solid gray;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
-.show__more {
+.keyword__element a {
+  display: block;
+  margin: 1rem 0.3rem;
+}
+
+.news_source {
+  float: right;
+  margin-right: 10px;
+}
+
+.keyword__traffic {
   float: right;
   margin-right: 1rem;
 }
@@ -35,6 +45,7 @@
 
 .main__keyword {
   font-weight: bold;
+  font-size: 1.3rem;
 }
 .keyword__detail {
   border: 1px solid tomato;

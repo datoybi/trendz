@@ -7,8 +7,6 @@ const slice = createSlice({
   },
   reducers: {
     replaceKeyWord(state, action) {
-      console.log(state);
-      console.log(action.payload);
       state.keywords = action.payload;
     },
   },
