@@ -1,5 +1,5 @@
 .section__title {
-  margin: 2rem 0;
+  margin: 1rem 0;
   font-weight: bold;
   font-size: 1.4rem;
 }
@@ -16,7 +16,7 @@
 }
 
 .keyword__element {
-  border: 1px solid gray;
+  background: #f3f3f5;
   padding: 0.5rem 0;
 }
 
@@ -37,9 +37,13 @@
 
 .searchWords__list li {
   width: 768px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
 }
 
 .searchWords_date {
+  display: block;
   margin: 0.5rem 0;
 }
 

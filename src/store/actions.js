@@ -3,15 +3,16 @@ import * as cheerio from "cheerio";
 import axios from "axios";
 
 const API_URL = "/trends/trendingsearches/daily/rss?geo=KR";
+// const API_URL = "http://google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
 
 export const fetchKeyword = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
-      const { responseData } = await axios.get(API_URL);
-      if (!responseData) {
+      const response = await axios.get(API_URL);
+      if (!response.data) {
         throw new Error("Could not fetch data!");
       }
-      return responseData;
+      return response.data;
     };
 
     try {

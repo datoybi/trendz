@@ -6,23 +6,20 @@ import classes from "./TrendKeywords.module.css";
 const TrendKeywords = () => {
   const { keywords, keywordsIndex } = useSelector((state) => state.trend);
 
+  const trendKeywords = keywords.map((keyword, index) => (
+    <TrendKeyword
+      key={`${new Date(keyword.pubDate).getTime()}_${index}`}
+      keyword={keyword}
+      pastPubDate={index !== 0 && keywords[index - 1].pubDate}
+    />
+  ));
+
   return (
     <section>
       <h2 className={classes.section__title}>
         요즘 Trendz – 많이 검색한 키워드
       </h2>
-      <ul className={classes.searchWords__list}>
-        {keywords.map((keyword, i) =>
-          i === 0 ? (
-            <TrendKeyword keyword={keyword} />
-          ) : (
-            <TrendKeyword
-              keyword={keyword}
-              pastPubDate={keywords[i - 1].pubDate}
-            />
-          )
-        )}
-      </ul>
+      <ul className={classes.searchWords__list}>{trendKeywords}</ul>
     </section>
   );
 };
