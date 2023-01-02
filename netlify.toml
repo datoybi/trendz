@@ -4,8 +4,3 @@
   status = 200
   force = true
 
-[[redirects]]
-	from = "/mostread.json"
-  to = "https://www.bbc.com/korean"
-  status = 200
-  force = true
