@@ -1,9 +1,11 @@
 [[redirects]]
-  from = "/trends/trendingsearches"
-  to = "https://trends.google.co.kr"
+  from = "/trends/trendingsearches/*"
+  to = "https://trends.google.co.kr/:splat"
+  status = 200
   force = true
 
 [[redirects]]
 	from = "/mostread.json"
-  to = "https://www.bbc.com/korean"
+  to = "https://www.bbc.com/korean/:splat"
+  status = 200
   force = true
