@@ -88,3 +88,8 @@
 .closeArccordion {
   animation: closeDetail 0.5s ease-out forwards;
 }
+
+button {
+  display: block;
+  margin: 0 auto;
+}

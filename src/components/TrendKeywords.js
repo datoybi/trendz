@@ -1,18 +1,28 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import TrendKeyword from "./TrendKeyword";
 import classes from "./TrendKeywords.module.css";
+import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
+import { actions } from "../store/slice.js";
 
 const TrendKeywords = () => {
   const { keywords, keywordsIndex } = useSelector((state) => state.trend);
+  const { paged, pagedIndex } = useSelector((state) => state.trend);
+  const dispatch = useDispatch();
 
   const trendKeywords = keywords.map((keyword, index) => (
     <TrendKeyword
       key={`${new Date(keyword.pubDate).getTime()}_${index}`}
       keyword={keyword}
       pastPubDate={index !== 0 && keywords[index - 1].pubDate}
+      index={index}
+      maxPaged={paged}
     />
   ));
+
+  const showMoreKeyword = () => {
+    dispatch(actions.increasePage());
+  };
 
   return (
     <section>
@@ -20,6 +30,10 @@ const TrendKeywords = () => {
         요즘 Trendz – 많이 검색한 키워드
       </h2>
       <ul className={classes.searchWords__list}>{trendKeywords}</ul>
+      {trendKeywords.length >= LOADING_KEYWORD_COUNT &&
+        paged !== trendKeywords.length && (
+          <button onClick={showMoreKeyword}>더 로드하기</button>
+        )}
     </section>
   );
 };
