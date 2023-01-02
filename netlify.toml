@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/trends/trendingsearches/*"
+  from = "/proxy/*"
   to = "https://trends.google.co.kr/:splat"
   status = 200
   force = true
