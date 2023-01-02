@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/trendz/static/css/main.40685192.css",
+    "main.js": "/trendz/static/js/main.ef2d9095.js",
+    "static/media/logo.png": "/trendz/static/media/logo.e723e9232b6b64122181.png",
+    "index.html": "/trendz/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.40685192.css",
+    "static/js/main.ef2d9095.js"
+  ]
+}
