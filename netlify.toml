@@ -1,11 +1,11 @@
 [[redirects]]
-  from = "/proxy/*"
+  from = "/trend_proxy/*"
   to = "https://trends.google.co.kr/:splat"
   status = 200
   force = true
 
 [[redirects]]
-	from = "/mostread.json"
+	from = "/news_proxy/*"
   to = "https://www.bbc.com/korean/:splat"
   status = 200
   force = true

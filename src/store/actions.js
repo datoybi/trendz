@@ -4,14 +4,17 @@ import axios from "axios";
 
 const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
 const TOP_NEWS_URL = "/mostread.json";
-const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
+const trend_proxy =
+  window.location.hostname === "localhost" ? "" : "/trend_proxy";
+const news_proxy =
+  window.location.hostname === "localhost" ? "" : "/news_proxy";
 
 // const API_URL = "http://google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
 
 export const fetchKeyword = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
-      const response = await axios.get(`${PROXY}${GOOGLE_TRENDS_URL}`);
+      const response = await axios.get(`${trend_proxy}${GOOGLE_TRENDS_URL}`);
       if (!response.data) {
         throw new Error("Could not fetch data!");
       }
@@ -58,7 +61,7 @@ export const fetchKeyword = () => {
 export const fetchTopNews = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
-      const response = await axios.get(TOP_NEWS_URL);
+      const response = await axios.get(`${news_proxy}${TOP_NEWS_URL}`);
       if (!response.data) {
         throw new Error("Could not fetch data!");
       }
