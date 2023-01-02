@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/trends/trendingsearches"
+  to = "https://trends.google.co.kr"
+  status = 200
+  force = true
+
+	from = "/mostread.json"
+  to = "https://www.bbc.com/korean"
+  status = 200
+  force = true
