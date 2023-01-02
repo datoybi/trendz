@@ -16,8 +16,8 @@
 }
 
 .keyword__element {
-  background: #f3f3f5;
   padding: 0.5rem 0;
+  border: 1px solid;
 }
 
 .keyword__element a {
