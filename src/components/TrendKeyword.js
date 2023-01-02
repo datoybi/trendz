@@ -28,7 +28,6 @@ const TrendKeyword = ({ keyword, pastPubDate, index, maxPaged }) => {
                   // 이거 DOMPurify 같은걸로 snitalize 해주기
                 ></span>
                 <span className={classes.news_source}>
-                  {" "}
                   {newsElement.source}
                 </span>
               </a>

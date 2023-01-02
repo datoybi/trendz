@@ -5,7 +5,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import { fetchKeyword } from "./store/actions";
+import { fetchKeyword, fetchTopNews } from "./store/actions";
 import { useEffect } from "react";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchKeyword());
+    dispatch(fetchTopNews());
   }, []);
 
   return (

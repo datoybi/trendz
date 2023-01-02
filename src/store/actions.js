@@ -2,13 +2,15 @@ import { actions } from "./slice";
 import * as cheerio from "cheerio";
 import axios from "axios";
 
-const API_URL = "/trends/trendingsearches/daily/rss?geo=KR";
+const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
+const TOP_NEWS_URL = "/mostread.json";
+
 // const API_URL = "http://google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
 
 export const fetchKeyword = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(GOOGLE_TRENDS_URL);
       if (!response.data) {
         throw new Error("Could not fetch data!");
       }
@@ -19,6 +21,8 @@ export const fetchKeyword = () => {
       const htmlString = await fetchHTML();
       const $ = cheerio.load(htmlString);
       const result = [];
+
+      // console.log($("item"));
 
       // 여기서부터 json 만드는거 추출 - 리펙토링이 가능할 것만 같아
       $("item").each(function (index, el) {
@@ -42,7 +46,38 @@ export const fetchKeyword = () => {
       });
       // console.log(JSON.stringify(result, null, 2));
 
-      dispatch(actions.replaceKeyWord(result));
+      dispatch(actions.getKeyWord(result));
+    } catch (error) {
+      console.log(error || "Something went wrong");
+      // 나중에 에러처리도 해주기
+    }
+  };
+};
+
+export const fetchTopNews = () => {
+  return async (dispatch) => {
+    const fetchHTML = async () => {
+      const response = await axios.get(TOP_NEWS_URL);
+      if (!response.data) {
+        throw new Error("Could not fetch data!");
+      }
+      return response.data;
+    };
+
+    try {
+      const { records } = await fetchHTML();
+      const result = Object.entries(records).reduce(
+        (acc, [_, value], index) => {
+          if (index >= 8) return acc;
+          const { promo } = value;
+          const { shortHeadline } = promo.headlines;
+          const { assetUri } = promo.locators;
+          return [...acc, [shortHeadline, assetUri]];
+        },
+        []
+      );
+
+      dispatch(actions.getNews(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기

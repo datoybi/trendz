@@ -1,4 +1,5 @@
 import TrendKeywords from "./TrendKeywords";
+import NewsTrend from "./NewsTrend";
 import classes from "./Main.module.css";
 
 const Main = () => {
@@ -6,7 +7,7 @@ const Main = () => {
     <main>
       <article>
         <TrendKeywords />
-        {/* <NewsTrend /> */}
+        <NewsTrend />
       </article>
     </main>
   );

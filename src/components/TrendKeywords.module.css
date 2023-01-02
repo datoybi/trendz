@@ -93,3 +93,7 @@ button {
   display: block;
   margin: 0 auto;
 }
+
+.keyword__element a :hover {
+  font-weight: bold;
+}
