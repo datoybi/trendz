@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 
+const MULTIPLY_LENGTH = 2;
+
 const slice = createSlice({
   name: "trend",
   initialState: {
     keywords: [],
-    paged: LOADING_KEYWORD_COUNT,
+    keywordCount: LOADING_KEYWORD_COUNT,
     news: [],
   },
 
@@ -14,11 +16,10 @@ const slice = createSlice({
       state.keywords = action.payload;
     },
 
-    increasePage(state) {
-      // 나중에 페이징 다시 해보기
-      const newPaged = state.paged * 2;
-      state.paged =
-        state.keywords.length < newPaged ? state.keywords.length : newPaged;
+    increaseKeywordCount(state) {
+      const newCount = state.keywordCount * MULTIPLY_LENGTH;
+      const totalKeyword = state.keywords.length;
+      state.keywordCount = totalKeyword < newCount ? totalKeyword : newCount;
     },
 
     getNews(state, action) {

@@ -4,20 +4,14 @@ import axios from "axios";
 
 const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
 const TOP_NEWS_URL = "/mostread.json";
-const trend_proxy =
-  window.location.hostname === "localhost" ? "" : "/trend_proxy";
-const news_proxy =
-  window.location.hostname === "localhost" ? "" : "/news_proxy";
-
-// const API_URL = "http://google.co.kr/trends/trendingsearches/daily/rss?geo=KR";
 
 export const fetchKeyword = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
+      const trend_proxy =
+        window.location.hostname === "localhost" ? "" : "/trend_proxy";
       const response = await axios.get(`${trend_proxy}${GOOGLE_TRENDS_URL}`);
-      if (!response.data) {
-        throw new Error("Could not fetch data!");
-      }
+      if (!response.data) throw new Error("Could not fetch data!");
       return response.data;
     };
 
@@ -26,29 +20,23 @@ export const fetchKeyword = () => {
       const $ = cheerio.load(htmlString);
       const result = [];
 
-      // console.log($("item"));
-
-      // 여기서부터 json 만드는거 추출 - 리펙토링이 가능할 것만 같아
-      $("item").each(function (index, el) {
+      $("item").each(function (_, el) {
         const pubDate = $(el).children("pubDate").text();
         const keyword = $(el).children("title").text();
         const traffic = $(el).children("ht\\:approx_traffic").text();
-        // console.log(`${pubDate} \t ${keyword} \t ${traffic}`);
-
         const news = [];
+
         $(el)
           .children("ht\\:news_item")
           .each(function (index) {
-            if (index < 2) {
-              const title = $(this).children("ht\\:news_item_title").text();
-              const url = $(this).children("ht\\:news_item_url").text();
-              const source = $(this).children("ht\\:news_item_source").text();
-              news.push({ title, url, source });
-            }
+            if (index >= 2) return;
+            const title = $(this).children("ht\\:news_item_title").text();
+            const url = $(this).children("ht\\:news_item_url").text();
+            const source = $(this).children("ht\\:news_item_source").text();
+            news.push({ title, url, source });
           });
         result.push({ pubDate, keyword, traffic, news });
       });
-      // console.log(JSON.stringify(result, null, 2));
 
       dispatch(actions.getKeyWord(result));
     } catch (error) {
@@ -61,10 +49,11 @@ export const fetchKeyword = () => {
 export const fetchTopNews = () => {
   return async (dispatch) => {
     const fetchHTML = async () => {
+      const news_proxy =
+        window.location.hostname === "localhost" ? "" : "/news_proxy";
       const response = await axios.get(`${news_proxy}${TOP_NEWS_URL}`);
-      if (!response.data) {
-        throw new Error("Could not fetch data!");
-      }
+
+      if (!response.data) throw new Error("Could not fetch data!");
       return response.data;
     };
 

@@ -6,8 +6,8 @@ import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 import { actions } from "../store/slice.js";
 
 const TrendKeywords = () => {
-  const { keywords, keywordsIndex } = useSelector((state) => state.trend);
-  const { paged, pagedIndex } = useSelector((state) => state.trend);
+  const { keywords } = useSelector((state) => state.trend);
+  const { keywordCount } = useSelector((state) => state.trend);
   const dispatch = useDispatch();
 
   const trendKeywords = keywords.map((keyword, index) => (
@@ -16,12 +16,12 @@ const TrendKeywords = () => {
       keyword={keyword}
       pastPubDate={index !== 0 && keywords[index - 1].pubDate}
       index={index}
-      maxPaged={paged}
+      maxCount={keywordCount}
     />
   ));
 
   const showMoreKeyword = () => {
-    dispatch(actions.increasePage());
+    dispatch(actions.increaseKeywordCount());
   };
 
   return (
@@ -31,7 +31,7 @@ const TrendKeywords = () => {
       </h2>
       <ul className={classes.searchWords__list}>{trendKeywords}</ul>
       {trendKeywords.length >= LOADING_KEYWORD_COUNT &&
-        paged !== trendKeywords.length && (
+        keywordCount !== trendKeywords.length && (
           <button onClick={showMoreKeyword}>더 로드하기</button>
         )}
     </section>
