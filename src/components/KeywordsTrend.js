@@ -1,18 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import TrendKeyword from "./TrendKeyword";
+import KeywordTrend from "./KeywordTrend";
 import classes from "./TrendKeywords.module.css";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 import { actions } from "../store/slice";
 
-const TrendKeywords = () => {
+const KeywordsTrend = () => {
   const { keywords } = useSelector(state => state.trend);
   const { keywordCount } = useSelector(state => state.trend);
   const dispatch = useDispatch();
 
-  const trendKeywords = keywords.map((keyword, index) => (
-    <TrendKeyword
+  const keywordTrend = keywords.map((keyword, index) => (
+    <KeywordTrend
       key={`${new Date(keyword.pubDate).getTime()}_${keyword.keyword}`}
       keyword={keyword}
       pastPubDate={index !== 0 && keywords[index - 1].pubDate}
@@ -28,8 +28,8 @@ const TrendKeywords = () => {
   return (
     <section>
       <h2 className={classes.section__title}>요즘 Trendz – 많이 검색한 키워드</h2>
-      <ul className={classes.searchWords__list}>{trendKeywords}</ul>
-      {trendKeywords.length >= LOADING_KEYWORD_COUNT && keywordCount !== trendKeywords.length && (
+      <ul className={classes.searchWords__list}>{keywordTrend}</ul>
+      {keywordTrend.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordTrend.length && (
         <button type="button" onClick={showMoreKeyword}>
           더 로드하기
         </button>
@@ -38,7 +38,7 @@ const TrendKeywords = () => {
   );
 };
 
-export default TrendKeywords;
+export default KeywordsTrend;
 
 // import classes from "./TrendKeyword.module.css";
 // import { useState } from "react";
