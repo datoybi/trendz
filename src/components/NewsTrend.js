@@ -1,13 +1,14 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import classes from "./NewsTrend.module.css";
 
 const NEWS_BASE_URL = "https://www.bbc.com";
 
 const NewsTrend = () => {
-  const { news } = useSelector((state) => state.trend);
+  const { news } = useSelector(state => state.trend);
 
   const newsHTML = news.map(([title, url], index) => (
-    <li key={index}>
+    <li key={`${title}_${url}`}>
       <a href={`${NEWS_BASE_URL}${url}`}>
         <p className={classes.news__title}>{title}</p>
         <p className={classes.news__update}>

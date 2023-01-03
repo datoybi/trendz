@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 
@@ -28,5 +29,5 @@ const slice = createSlice({
   },
 });
 
-export const actions = slice.actions;
+export const { actions } = slice;
 export default slice.reducer;

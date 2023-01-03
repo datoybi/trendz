@@ -1,3 +1,5 @@
+import React from "react";
+
 import TrendKeywords from "./TrendKeywords";
 import NewsTrend from "./NewsTrend";
 // import classes from "./Main.module.css";

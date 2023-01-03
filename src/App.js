@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import "./reset.css";
@@ -6,9 +7,8 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import { fetchKeyword, fetchTopNews } from "./store/actions";
-import { useEffect } from "react";
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,6 +23,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

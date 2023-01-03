@@ -1,21 +1,22 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import TrendKeyword from "./TrendKeyword";
 import classes from "./TrendKeywords.module.css";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
-import { actions } from "../store/slice.js";
+import { actions } from "../store/slice";
 
 const TrendKeywords = () => {
-  const { keywords } = useSelector((state) => state.trend);
-  const { keywordCount } = useSelector((state) => state.trend);
+  const { keywords } = useSelector(state => state.trend);
+  const { keywordCount } = useSelector(state => state.trend);
   const dispatch = useDispatch();
 
   const trendKeywords = keywords.map((keyword, index) => (
     <TrendKeyword
-      key={`${new Date(keyword.pubDate).getTime()}_${index}`}
+      key={`${new Date(keyword.pubDate).getTime()}_${keyword.keyword}`}
       keyword={keyword}
       pastPubDate={index !== 0 && keywords[index - 1].pubDate}
-      index={index}
+      currentIndex={index}
       maxCount={keywordCount}
     />
   ));
@@ -26,14 +27,13 @@ const TrendKeywords = () => {
 
   return (
     <section>
-      <h2 className={classes.section__title}>
-        요즘 Trendz – 많이 검색한 키워드
-      </h2>
+      <h2 className={classes.section__title}>요즘 Trendz – 많이 검색한 키워드</h2>
       <ul className={classes.searchWords__list}>{trendKeywords}</ul>
-      {trendKeywords.length >= LOADING_KEYWORD_COUNT &&
-        keywordCount !== trendKeywords.length && (
-          <button onClick={showMoreKeyword}>더 로드하기</button>
-        )}
+      {trendKeywords.length >= LOADING_KEYWORD_COUNT && keywordCount !== trendKeywords.length && (
+        <button type="button" onClick={showMoreKeyword}>
+          더 로드하기
+        </button>
+      )}
     </section>
   );
 };
