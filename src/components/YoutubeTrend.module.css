@@ -1,0 +1,120 @@
+.section__title {
+  margin: 1rem 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.youtube_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.youtube_list li {
+  float: left;
+  width: 240px;
+  margin-bottom: 40px;
+  border: 1px solid;
+}
+
+/* .youtube_list li + li {
+  margin-left: 15px;
+} */
+
+/* .youtube_list li:nth-child(5n + 1) {
+  margin-left: 0;
+} */
+
+.youtube_list .item_link {
+  display: block;
+  position: relative;
+}
+
+.img_wrap {
+  position: relative;
+}
+
+.youtube_list .item_link img {
+  width: 280px;
+  height: 141px;
+}
+
+.youtube_list .item_link:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: "";
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.youtube_list .rank {
+  position: absolute;
+  top: 0;
+  bottom: 1px;
+  width: 20px;
+  text-align: center;
+}
+
+.youtube_list .rank .num {
+  display: block;
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.youtube_list .info_wrap {
+  margin-top: 10px;
+  position: relative;
+  height: 66px;
+}
+
+.youtube_list .info {
+  height: 79px;
+  margin-left: 30px;
+}
+
+.youtube_list .info {
+  display: -webkit-box;
+  overflow: hidden;
+  max-height: 40px;
+  font-size: 15px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  color: #090909;
+}
+
+.youtube_list .title {
+  display: block;
+  font-size: 1rem;
+}
+
+.youtube_list .host {
+  margin-top: 5px;
+  color: gray;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.youtube_list .view:before {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background: url(../assets/view.png) no-repeat;
+  background-size: 1rem;
+}
+
+.youtube_list .view {
+  position: absolute;
+  bottom: 7px;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  right: 10px;
+}

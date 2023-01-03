@@ -4,6 +4,9 @@ import { actions } from "./slice";
 
 const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
 const TOP_NEWS_URL = "/mostread.json";
+const YOUTUBE_URL = "/youtube-video-rank/top-kr-all-video-day";
+const YOUTUBE_SECOND_URL =
+  "/youtube-video-rank/_top-videos?country=kr&category=all&offset=5&pageSize=7";
 
 export const fetchKeyword = () => {
   return async dispatch => {
@@ -66,6 +69,108 @@ export const fetchTopNews = () => {
       }, []);
 
       dispatch(actions.getNews(result));
+    } catch (error) {
+      console.log(error || "Something went wrong");
+      // 나중에 에러처리도 해주기
+    }
+  };
+};
+
+export const fetchYoutube = () => {
+  return async dispatch => {
+    const fetchHTML = async () => {
+      const youtubeProxy = window.location.hostname === "localhost" ? "" : "/youtube_proxy";
+      const response = await axios.get(`${youtubeProxy}${YOUTUBE_URL}`);
+      if (!response.data) throw new Error("Could not fetch data!");
+      return response.data;
+    };
+
+    const fetchSecondHTML = async () => {
+      const youtubeProxy = window.location.hostname === "localhost" ? "" : "/youtube_proxy";
+      const response = await axios.get(`${youtubeProxy}${YOUTUBE_SECOND_URL}`);
+      if (!response.data) throw new Error("Could not fetch data!");
+      return response.data;
+    };
+
+    try {
+      const htmlString = await fetchHTML();
+      const $ = cheerio.load(htmlString);
+      const result = [];
+
+      const firstVideo = $("#number-one-video");
+      const firstImgURL = firstVideo.find("img").attr("src");
+      const firstVideoId = firstVideo.find(".youtube-video-wrapper").attr("data-video-id");
+      const firstTitle = firstVideo.find(".video-title").attr("title");
+      const firstHost = firstVideo.find(".detail-data.name").attr("title");
+      const firstView = firstVideo.find(".detail-data.view").text();
+
+      result.push({
+        imgURL: firstImgURL,
+        videoId: firstVideoId,
+        title: firstTitle,
+        host: firstHost,
+        view: firstView,
+      });
+
+      $("#ranking-videos > li").each(function (_, el) {
+        const videoId = $(el).find(".youtube-video-wrapper").attr("data-video-id");
+        const imgURL = $(el).find("img").attr("src");
+        const title = $(el).find(".video-title").last().attr("title");
+        const host = $(el).find(".video-data > .name").text();
+        const view = $(el).find(".detail-data.view").text();
+
+        result.push({
+          imgURL,
+          videoId,
+          title,
+          host,
+          view,
+        });
+      });
+
+      const secondHtmlString = await fetchSecondHTML();
+      const $$ = cheerio.load(secondHtmlString);
+
+      $$("#ranking-videos > li").each(function (_, el) {
+        const videoId = $(el).find(".youtube-video-wrapper").attr("data-video-id");
+        const imgURL = $(el).find("img").attr("src");
+        const title = $(el).find(".video-title").last().attr("title");
+        const host = $(el).find(".video-data > .name").text();
+        const view = $(el).find(".detail-data.view").text();
+
+        result.push({
+          imgURL,
+          videoId,
+          title,
+          host,
+          view,
+        });
+      });
+      console.log(result);
+
+      // const [firstElement, secondElement] = $(".video-rank");
+
+      // const result = [];
+
+      // $("item").each(function (_, el) {
+      //   const pubDate = $(el).children("pubDate").text();
+      //   const keyword = $(el).children("title").text();
+      //   const traffic = $(el).children("ht\\:approx_traffic").text();
+      //   const news = [];
+
+      //   $(el)
+      //     .children("ht\\:news_item")
+      //     .each(function (index) {
+      //       if (index >= 2) return;
+      //       const title = $(this).children("ht\\:news_item_title").text();
+      //       const url = $(this).children("ht\\:news_item_url").text();
+      //       const source = $(this).children("ht\\:news_item_source").text();
+      //       news.push({ title, url, source });
+      //     });
+      //   result.push({ pubDate, keyword, traffic, news });
+      // });
+
+      // dispatch(actions.getKeyWord(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기

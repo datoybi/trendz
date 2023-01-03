@@ -9,3 +9,9 @@
   to = "https://www.bbc.com/korean/:splat"
   status = 200
   force = true
+
+	[[redirects]]
+	from = "/youtube_proxy/*"
+  to = "https://kr.noxinfluencer.com/:splat"
+  status = 200
+  force = true

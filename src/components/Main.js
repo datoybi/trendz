@@ -1,8 +1,9 @@
 import React from "react";
 
-import TrendKeywords from "./TrendKeywords";
+import TrendKeywords from "./KeywordsTrend";
 import NewsTrend from "./NewsTrend";
-// import classes from "./Main.module.css";
+import YouTubeTrend from "./YoutubeTrend";
+import classes from "./Main.module.css";
 
 const Main = () => {
   return (
@@ -10,6 +11,7 @@ const Main = () => {
       <article>
         <TrendKeywords />
         <NewsTrend />
+        <YouTubeTrend />
       </article>
     </main>
   );
