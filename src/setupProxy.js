@@ -23,4 +23,11 @@ module.exports = function (app) {
       changeOrigin: true,
     }),
   );
+
+  app.use(
+    createProxyMiddleware("/chart/", {
+      target: "https://www.melon.com",
+      changeOrigin: true,
+    }),
+  );
 };

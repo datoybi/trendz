@@ -6,7 +6,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import { fetchKeyword, fetchTopNews, fetchYoutube } from "./store/actions";
+import { fetchKeyword, fetchSong, fetchTopNews, fetchYoutube } from "./store/actions";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const App = () => {
     dispatch(fetchKeyword());
     dispatch(fetchTopNews());
     dispatch(fetchYoutube());
+    dispatch(fetchSong());
   }, []);
 
   return (

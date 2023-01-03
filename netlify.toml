@@ -15,3 +15,9 @@
   to = "https://kr.noxinfluencer.com/:splat"
   status = 200
   force = true
+
+	[[redirects]]
+	from = "/song_proxy/*"
+  to = "https://www.melon.com/:splat"
+  status = 200
+  force = true

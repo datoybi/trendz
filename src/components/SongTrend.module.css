@@ -1,0 +1,19 @@
+.section__title {
+  margin: 1rem 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.song_table {
+  width: 50%;
+  border: 1px solid;
+}
+
+.song_table th,
+td {
+  border: 1px solid;
+}
+
+.song_table td {
+  text-align: center;
+}

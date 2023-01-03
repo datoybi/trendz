@@ -7,6 +7,8 @@ const TOP_NEWS_URL = "/mostread.json";
 const YOUTUBE_URL = "/youtube-video-rank/top-kr-all-video-day";
 const YOUTUBE_SECOND_URL =
   "/youtube-video-rank/_top-videos?country=kr&category=all&offset=5&pageSize=7";
+const SONG_URL = "/chart/";
+const MAX_SONG = 20;
 
 export const fetchKeyword = () => {
   return async dispatch => {
@@ -145,6 +147,55 @@ export const fetchYoutube = () => {
       result = [...result, ...newSecondResult];
 
       dispatch(actions.getYoutube(result));
+    } catch (error) {
+      console.log(error || "Something went wrong");
+      // 나중에 에러처리도 해주기
+    }
+  };
+};
+
+export const fetchSong = () => {
+  return async dispatch => {
+    const fetchHTML = async () => {
+      const songProxy = window.location.hostname === "localhost" ? "" : "/song_proxy";
+      const response = await axios.get(`${songProxy}${SONG_URL}`);
+      if (!response.data) throw new Error("Could not fetch data!");
+      return response.data;
+    };
+
+    try {
+      const htmlString = await fetchHTML();
+      const $ = cheerio.load(htmlString);
+      const result = [];
+
+      console.log($(".service_list_song .lst50 .wrap_song_info"));
+      $(".service_list_song .lst50").each(function (index, el) {
+        if (index >= MAX_SONG) return;
+        const album = $(el).find("a:eq(0)").attr("title"); // 엘범명
+        const title = $(el).find(".ellipsis:eq(0)").text().trim(); // 노래명
+        const singer = $(el).find("a:eq(3)").text(); // 가수
+        result.push({ album, title, singer });
+      });
+
+      console.log(result);
+      //   const pubDate = $(el).children("pubDate").text();
+      //   const keyword = $(el).children("title").text();
+      //   const traffic = $(el).children("ht\\:approx_traffic").text();
+      //   const news = [];
+
+      //   $(el)
+      //     .children("ht\\:news_item")
+      //     .each(function (index) {
+      //       if (index >= 2) return;
+      //       const title = $(this).children("ht\\:news_item_title").text();
+      //       const url = $(this).children("ht\\:news_item_url").text();
+      //       const source = $(this).children("ht\\:news_item_source").text();
+      //       news.push({ title, url, source });
+      //     });
+      //   result.push({ pubDate, keyword, traffic, news });
+      // });
+
+      // dispatch(actions.getKeyWord(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기

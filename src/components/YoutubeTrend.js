@@ -40,7 +40,7 @@ const YouTubeTrend = () => {
           </a>
           <span className={classes.view}>
             <span className="blind">뷰</span>
-            {el.view}
+            {el.view.replace(" 누적 조회수", "")}
           </span>
         </div>
       </div>
