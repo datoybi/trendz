@@ -76,6 +76,29 @@ export const fetchTopNews = () => {
   };
 };
 
+const youtubeLoop = (selector, $) => {
+  let newResult = [];
+  selector.each(function (_, el) {
+    const videoId = $(el).find(".youtube-video-wrapper").attr("data-video-id");
+    const imgURL = $(el).find("img").attr("src");
+    const title = $(el).find(".video-title").last().attr("title");
+    const host = $(el).find(".video-data > .name").text();
+    const view = $(el).find(".detail-data.view").text();
+
+    newResult = [
+      ...newResult,
+      {
+        imgURL,
+        videoId,
+        title,
+        host,
+        view,
+      },
+    ];
+  });
+  return newResult;
+};
+
 export const fetchYoutube = () => {
   return async dispatch => {
     const fetchHTML = async () => {
@@ -95,7 +118,6 @@ export const fetchYoutube = () => {
     try {
       const htmlString = await fetchHTML();
       const $ = cheerio.load(htmlString);
-      const result = [];
 
       const firstVideo = $("#number-one-video");
       const firstImgURL = firstVideo.find("img").attr("src");
@@ -104,73 +126,25 @@ export const fetchYoutube = () => {
       const firstHost = firstVideo.find(".detail-data.name").attr("title");
       const firstView = firstVideo.find(".detail-data.view").text();
 
-      result.push({
-        imgURL: firstImgURL,
-        videoId: firstVideoId,
-        title: firstTitle,
-        host: firstHost,
-        view: firstView,
-      });
+      let result = [
+        {
+          imgURL: firstImgURL,
+          videoId: firstVideoId,
+          title: firstTitle,
+          host: firstHost,
+          view: firstView,
+        },
+      ];
 
-      $("#ranking-videos > li").each(function (_, el) {
-        const videoId = $(el).find(".youtube-video-wrapper").attr("data-video-id");
-        const imgURL = $(el).find("img").attr("src");
-        const title = $(el).find(".video-title").last().attr("title");
-        const host = $(el).find(".video-data > .name").text();
-        const view = $(el).find(".detail-data.view").text();
-
-        result.push({
-          imgURL,
-          videoId,
-          title,
-          host,
-          view,
-        });
-      });
+      const newResult = youtubeLoop($("#ranking-videos > li"), $);
+      result = [...result, ...newResult];
 
       const secondHtmlString = await fetchSecondHTML();
       const $$ = cheerio.load(secondHtmlString);
+      const newSecondResult = youtubeLoop($$("#ranking-videos > li"), $$);
+      result = [...result, ...newSecondResult];
 
-      $$("#ranking-videos > li").each(function (_, el) {
-        const videoId = $(el).find(".youtube-video-wrapper").attr("data-video-id");
-        const imgURL = $(el).find("img").attr("src");
-        const title = $(el).find(".video-title").last().attr("title");
-        const host = $(el).find(".video-data > .name").text();
-        const view = $(el).find(".detail-data.view").text();
-
-        result.push({
-          imgURL,
-          videoId,
-          title,
-          host,
-          view,
-        });
-      });
-      console.log(result);
-
-      // const [firstElement, secondElement] = $(".video-rank");
-
-      // const result = [];
-
-      // $("item").each(function (_, el) {
-      //   const pubDate = $(el).children("pubDate").text();
-      //   const keyword = $(el).children("title").text();
-      //   const traffic = $(el).children("ht\\:approx_traffic").text();
-      //   const news = [];
-
-      //   $(el)
-      //     .children("ht\\:news_item")
-      //     .each(function (index) {
-      //       if (index >= 2) return;
-      //       const title = $(this).children("ht\\:news_item_title").text();
-      //       const url = $(this).children("ht\\:news_item_url").text();
-      //       const source = $(this).children("ht\\:news_item_source").text();
-      //       news.push({ title, url, source });
-      //     });
-      //   result.push({ pubDate, keyword, traffic, news });
-      // });
-
-      // dispatch(actions.getKeyWord(result));
+      dispatch(actions.getYoutube(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기

@@ -34,8 +34,9 @@
   position: relative;
 }
 
-.youtube_list .item_link img {
-  width: 280px;
+.youtube_list .item_link img,
+.youtube_list .img_wrap img {
+  width: 240px;
   height: 141px;
 }
 
@@ -77,7 +78,7 @@
 .youtube_list .info {
   display: -webkit-box;
   overflow: hidden;
-  max-height: 40px;
+  max-height: 38px;
   font-size: 15px;
   line-height: 18px;
   text-overflow: ellipsis;
@@ -89,7 +90,12 @@
 
 .youtube_list .title {
   display: block;
+  max-height: 38px;
+  white-space: nowrap;
   font-size: 1rem;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
 }
 
 .youtube_list .host {
@@ -112,7 +118,7 @@
 
 .youtube_list .view {
   position: absolute;
-  bottom: 7px;
+  bottom: 3px;
   padding-left: 18px;
   font-size: 14px;
   line-height: 20px;

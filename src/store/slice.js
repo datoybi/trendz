@@ -10,6 +10,7 @@ const slice = createSlice({
     keywords: [],
     keywordCount: LOADING_KEYWORD_COUNT,
     news: [],
+    youtubeList: [],
   },
 
   reducers: {
@@ -25,6 +26,10 @@ const slice = createSlice({
 
     getNews(state, action) {
       state.news = action.payload;
+    },
+
+    getYoutube(state, action) {
+      state.youtubeList = action.payload;
     },
   },
 });
