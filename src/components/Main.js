@@ -5,6 +5,7 @@ import NewsTrend from "./NewsTrend";
 import YouTubeTrend from "./YoutubeTrend";
 import SongTrend from "./SongTrend";
 import MovieTrend from "./MovieTrend";
+import TVTrend from "./TVTrend";
 import classes from "./Main.module.css";
 
 const Main = () => {
@@ -16,6 +17,7 @@ const Main = () => {
         <YouTubeTrend />
         <SongTrend />
         <MovieTrend />
+        <TVTrend />
       </article>
     </main>
   );

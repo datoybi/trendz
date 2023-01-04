@@ -9,7 +9,7 @@ const MovieTrend = () => {
   const { movieList } = useSelector(state => state.trend);
 
   const movieHTML = movieList.map((movie, index) => (
-    <div className={classes.movie_wrapper}>
+    <div className={classes.movie_wrapper} key={movie.URL}>
       <div className={classes.poster}>
         <a href={`${MOVIE_BASE_URL}${movie.URL}`} target="_blank" rel="noopener noreferrer">
           <span>{index + 1}</span>
