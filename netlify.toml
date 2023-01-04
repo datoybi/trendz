@@ -30,6 +30,6 @@
 
 	[[redirects]]
 	from = "/tv_proxy/*"
-  to = "https://m.search.naver.com/:splat"
+  to = "https://search.naver.com/:splat"
   status = 200
   force = true
