@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchKeyword());
     dispatch(fetchTopNews());
-    dispatch(fetchYoutube());
+    // dispatch(fetchYoutube());
     dispatch(fetchSong());
   }, []);
 

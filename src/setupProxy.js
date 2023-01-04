@@ -30,4 +30,11 @@ module.exports = function (app) {
       changeOrigin: true,
     }),
   );
+
+  app.use(
+    createProxyMiddleware("/ranking/*", {
+      target: "https://movie.daum.net",
+      changeOrigin: true,
+    }),
+  );
 };

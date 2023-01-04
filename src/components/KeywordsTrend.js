@@ -27,7 +27,7 @@ const KeywordsTrend = () => {
 
   return (
     <section>
-      <h2 className={classes.section__title}>요즘 Trendz – 많이 검색한 키워드</h2>
+      <h2 className={classes.section__title}>키워드 Trendz – 많이 검색한 키워드</h2>
       <ul className={classes.searchWords__list}>{keywordTrend}</ul>
       {keywordTrend.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordTrend.length && (
         <button type="button" onClick={showMoreKeyword}>
