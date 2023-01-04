@@ -10,10 +10,22 @@
   justify-content: space-evenly;
 }
 
+.poster {
+  position: relative;
+}
+
 .poster img {
   width: 180px;
   height: 258px;
   border-radius: 4px;
+}
+.poster span {
+  font-size: 2rem;
+  position: absolute;
+  color: #fff;
+  top: 7px;
+  left: 10px;
+  font-style: italic;
 }
 
 .rate_wrap {

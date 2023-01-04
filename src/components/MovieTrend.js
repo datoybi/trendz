@@ -8,10 +8,11 @@ const MOVIE_BASE_URL = "https://movie.daum.net/";
 const MovieTrend = () => {
   const { movieList } = useSelector(state => state.trend);
 
-  const movieHTML = movieList.map(movie => (
+  const movieHTML = movieList.map((movie, index) => (
     <div className={classes.movie_wrapper}>
       <div className={classes.poster}>
         <a href={`${MOVIE_BASE_URL}${movie.URL}`} target="_blank" rel="noopener noreferrer">
+          <span>{index + 1}</span>
           <img alt={movie.title} src={movie.posterURL} />
         </a>
       </div>
