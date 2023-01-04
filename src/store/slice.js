@@ -4,6 +4,7 @@ import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 
 const MULTIPLY_LENGTH = 2;
 
+// 데이터 json으로 통일하자
 const slice = createSlice({
   name: "trend",
   initialState: {
@@ -11,6 +12,7 @@ const slice = createSlice({
     keywordCount: LOADING_KEYWORD_COUNT,
     news: [],
     youtubeList: [],
+    songList: [],
   },
 
   reducers: {
@@ -30,6 +32,10 @@ const slice = createSlice({
 
     getYoutube(state, action) {
       state.youtubeList = action.payload;
+    },
+
+    getSongList(state, action) {
+      state.songList = action.payload;
     },
   },
 });

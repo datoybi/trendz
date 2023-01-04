@@ -11,9 +11,9 @@ const NewsTrend = () => {
     <li key={`${title}_${url}`}>
       <a href={`${NEWS_BASE_URL}${url}`}>
         <p className={classes.news__title}>{title}</p>
-        <p className={classes.news__update}>
+        {/* <p className={classes.news__update}>
           업데이트 : {new Date(1672625985000).toLocaleDateString()}
-        </p>
+        </p> */}
       </a>
     </li>
   ));

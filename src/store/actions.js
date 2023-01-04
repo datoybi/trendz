@@ -168,7 +168,6 @@ export const fetchSong = () => {
       const $ = cheerio.load(htmlString);
       const result = [];
 
-      console.log($(".service_list_song .lst50 .wrap_song_info"));
       $(".service_list_song .lst50").each(function (index, el) {
         if (index >= MAX_SONG) return;
         const album = $(el).find("a:eq(0)").attr("title"); // 엘범명
@@ -176,26 +175,7 @@ export const fetchSong = () => {
         const singer = $(el).find("a:eq(3)").text(); // 가수
         result.push({ album, title, singer });
       });
-
-      console.log(result);
-      //   const pubDate = $(el).children("pubDate").text();
-      //   const keyword = $(el).children("title").text();
-      //   const traffic = $(el).children("ht\\:approx_traffic").text();
-      //   const news = [];
-
-      //   $(el)
-      //     .children("ht\\:news_item")
-      //     .each(function (index) {
-      //       if (index >= 2) return;
-      //       const title = $(this).children("ht\\:news_item_title").text();
-      //       const url = $(this).children("ht\\:news_item_url").text();
-      //       const source = $(this).children("ht\\:news_item_source").text();
-      //       news.push({ title, url, source });
-      //     });
-      //   result.push({ pubDate, keyword, traffic, news });
-      // });
-
-      // dispatch(actions.getKeyWord(result));
+      dispatch(actions.getSongList(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기

@@ -7,13 +7,35 @@
 .song_table {
   width: 50%;
   border: 1px solid;
+  table-layout: fixed;
 }
 
 .song_table th,
 td {
   border: 1px solid;
+  vertical-align: middle;
+  height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .song_table td {
   text-align: center;
+}
+
+.col1 {
+  width: 10%;
+}
+
+.col2 {
+  width: 35%;
+}
+
+.col3 {
+  width: 25%;
+}
+
+.col4 {
+  width: 30%;
 }
