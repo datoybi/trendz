@@ -1,8 +1,39 @@
 // !: 나중에 노래 순위랑 합치기 컴포넌트 만들어서 사용하기
 import React from "react";
+import { useSelector } from "react-redux";
 import classes from "./SongTrend.module.css";
 
+const BASE_URL = "https://search.naver.com/search.naver";
+
 const TVTrend = () => {
+  const { TVList } = useSelector(state => state.trend);
+  let tvRank = 1;
+  let count = 1;
+
+  const TVHTML = TVList.map((tv, index) => {
+    if (index !== 0) {
+      if (TVList[index - 1].rate === TVList[index].rate) {
+        count += 1;
+      } else {
+        tvRank += count;
+        count = 1;
+      }
+    }
+
+    return (
+      <tr key={`${tvRank}_${tv.title}`}>
+        <td>{tvRank}</td>
+        <td>
+          <a href={`${BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
+            {tv.title}
+          </a>
+        </td>
+        <td>{tv.cast}</td>
+        <td>{tv.rate}</td>
+      </tr>
+    );
+  });
+
   return (
     <section>
       <p className={classes.section__title}>TV Trendz - 한 주간 시청률 수 높은 TV 프로그램</p>
@@ -16,20 +47,7 @@ const TVTrend = () => {
               <th className={classes.col4}>시청률</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>삼남매가 용감하게</td>
-              <td>KBS</td>
-              <td>22.8</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>내눈의 콩깍지</td>
-              <td>KBS1</td>
-              <td>217.8</td>
-            </tr>
-          </tbody>
+          <tbody>{TVHTML}</tbody>
         </table>
       </div>
     </section>

@@ -27,3 +27,9 @@
   to = "https://movie.daum.net/:splat"
   status = 200
   force = true
+
+	[[redirects]]
+	from = "/tv_proxy/*"
+  to = "https://m.search.naver.com/:splat"
+  status = 200
+  force = true

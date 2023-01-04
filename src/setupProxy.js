@@ -37,4 +37,11 @@ module.exports = function (app) {
       changeOrigin: true,
     }),
   );
+
+  app.use(
+    createProxyMiddleware("/search.naver", {
+      target: "https://search.naver.com",
+      changeOrigin: true,
+    }),
+  );
 };

@@ -10,6 +10,7 @@ const YOUTUBE_SECOND_URL =
 const SONG_URL = "/chart/";
 const MAX_SONG = 20;
 const MOVIE_URL = "/ranking/reservation";
+const TV_URL = "/search.naver?where=nexearch&sm=tab_etc&mra=blUw&qvt=0&query=주간%20시청률";
 
 export const fetchKeyword = () => {
   return async dispatch => {
@@ -209,6 +210,37 @@ export const fetchMovie = () => {
       });
 
       dispatch(actions.getMovieList(result));
+    } catch (error) {
+      console.log(error || "Something went wrong");
+      // 나중에 에러처리도 해주기
+    }
+  };
+};
+
+export const fetchTV = () => {
+  return async dispatch => {
+    const fetchHTML = async () => {
+      const tvProxy = window.location.hostname === "localhost" ? "" : "/tv_proxy";
+      const response = await axios.get(`${tvProxy}${TV_URL}`);
+      if (!response.data) throw new Error("Could not fetch data!");
+      return response.data;
+    };
+
+    try {
+      const htmlString = await fetchHTML();
+      const $ = cheerio.load(htmlString);
+      const result = [];
+
+      $(".tb_list > tbody tr").each(function (_, el) {
+        const title = $(el).find("a").first().text();
+        const cast = $(el).find("a:eq(1)").text();
+        const rate = $(el).find(".rate").text();
+        const url = $(el).find("a").first().attr("href");
+
+        result.push({ title, cast, rate, url });
+      });
+
+      dispatch(actions.getTVList(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기
