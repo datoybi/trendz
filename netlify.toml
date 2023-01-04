@@ -21,3 +21,9 @@
   to = "https://www.melon.com/:splat"
   status = 200
   force = true
+
+	[[redirects]]
+	from = "/movie_proxy/*"
+  to = "https://movie.daum.net/:splat"
+  status = 200
+  force = true

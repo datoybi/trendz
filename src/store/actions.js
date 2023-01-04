@@ -9,6 +9,7 @@ const YOUTUBE_SECOND_URL =
   "/youtube-video-rank/_top-videos?country=kr&category=all&offset=5&pageSize=7";
 const SONG_URL = "/chart/";
 const MAX_SONG = 20;
+const MOVIE_URL = "/ranking/reservation";
 
 export const fetchKeyword = () => {
   return async dispatch => {
@@ -176,6 +177,38 @@ export const fetchSong = () => {
         result.push({ album, title, singer });
       });
       dispatch(actions.getSongList(result));
+    } catch (error) {
+      console.log(error || "Something went wrong");
+      // 나중에 에러처리도 해주기
+    }
+  };
+};
+
+export const fetchMovie = () => {
+  return async dispatch => {
+    const fetchHTML = async () => {
+      const movieProxy = window.location.hostname === "localhost" ? "" : "/movie_proxy";
+      const response = await axios.get(`${movieProxy}${MOVIE_URL}`);
+      if (!response.data) throw new Error("Could not fetch data!");
+      return response.data;
+    };
+
+    try {
+      const htmlString = await fetchHTML();
+      // console.log(htmlString);
+      const $ = cheerio.load(htmlString);
+      const result = [];
+
+      $(".list_movieranking > li").each(function (_, el) {
+        const posterURL = $(el).find(".poster_movie > img").attr("src");
+        const URL = $(el).find(".poster_info > a").attr("href");
+        const title = $(el).find(".tit_item > a").text();
+        const rate = $(el).find(".txt_grade").text();
+
+        result.push({ posterURL, URL, title, rate });
+      });
+
+      dispatch(actions.getMovieList(result));
     } catch (error) {
       console.log(error || "Something went wrong");
       // 나중에 에러처리도 해주기

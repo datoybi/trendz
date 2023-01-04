@@ -10,7 +10,7 @@
   justify-content: space-evenly;
 }
 
-.poster > img {
+.poster img {
   width: 180px;
   height: 258px;
   border-radius: 4px;
@@ -26,14 +26,16 @@
   top: 5px;
 }
 
-.rate_wrap > .rate {
+.rate_wrap .rate {
   font-size: 0.9rem;
   font-weight: 400;
   margin-left: 0.3rem;
 }
 
 .movie_name {
+  display: block;
   font-size: 1rem;
   font-weight: normal;
   color: gray;
+  width: 180px;
 }

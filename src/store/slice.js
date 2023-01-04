@@ -13,6 +13,7 @@ const slice = createSlice({
     news: [],
     youtubeList: [],
     songList: [],
+    movieList: [],
   },
 
   reducers: {
@@ -36,6 +37,10 @@ const slice = createSlice({
 
     getSongList(state, action) {
       state.songList = action.payload;
+    },
+
+    getMovieList(state, action) {
+      state.movieList = action.payload;
     },
   },
 });
