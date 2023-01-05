@@ -13,17 +13,29 @@ const KeywordTrend = ({ keyword, pastPubDate, currentIndex, maxCount }) => {
       <div className={classes.keyword__element}>
         <span className={classes.main__keyword}>{keyword.keyword}</span>
         <span className={classes.keyword__traffic}>{keyword.traffic}회 이상 검색</span>
-        {keyword.news.map(newsElement => (
-          <a href={newsElement.url} key={newsElement.url} target="_blank" rel="noopener noreferrer">
-            <p className={classes.keyword__news}>
-              <span
-                className={classes.title}
-                dangerouslySetInnerHTML={{ __html: newsElement.title }}
-              />
-              <span className={classes.news_source}>{newsElement.source}</span>
-            </p>
-          </a>
-        ))}
+        <div className={classes.news_wrapper}>
+          <div className={classes.news_wrap}>
+            {keyword.news.map(newsElement => (
+              <a
+                href={newsElement.url}
+                key={newsElement.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p className={classes.keyword__news}>
+                  <span
+                    className={classes.title}
+                    dangerouslySetInnerHTML={{ __html: newsElement.title }}
+                  />
+                  <span className={classes.news_source}>{newsElement.source}</span>
+                </p>
+              </a>
+            ))}
+          </div>
+          <span className={classes.thumbnail}>
+            <img src={keyword.imgURL} alt={`${keyword.keyword} 대표사진`} />
+          </span>
+        </div>
       </div>
     </li>
   );
