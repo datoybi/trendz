@@ -5,6 +5,7 @@ import { actions } from "./slice";
 const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
 const MAX_KEYWORD_NEWS = 2;
 const TOP_NEWS_URL = "/mostread.json";
+const MAX_TOP_NEWS = 10;
 const YOUTUBE_URL = "/youtube-video-rank/top-kr-all-video-day";
 const YOUTUBE_SECOND_URL =
   "/youtube-video-rank/_top-videos?country=kr&category=all&offset=5&pageSize=7";
@@ -66,7 +67,7 @@ export const fetchTopNews = () => {
     try {
       const { records } = await fetchHTML();
       const result = Object.entries(records).reduce((acc, [_, value], index) => {
-        if (index >= 8) return acc;
+        if (index >= MAX_TOP_NEWS) return acc;
         const { promo } = value;
         const { shortHeadline } = promo.headlines;
         const { assetUri } = promo.locators;

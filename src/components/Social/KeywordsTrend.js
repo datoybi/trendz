@@ -32,7 +32,7 @@ const KeywordsTrend = () => {
   return (
     <section className={classes.keyword_section}>
       <div className={classes.keyword__Wrapper}>
-        <h2 className={classes.section__title}>
+        <h2 className="section__title">
           구글에 검색한 <br />
           인기 급상승 키워드를 확인해보세요.
         </h2>
