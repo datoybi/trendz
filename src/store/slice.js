@@ -14,6 +14,7 @@ const slice = createSlice({
     youtubeList: [],
     songList: [],
     movieList: [],
+    moviePage: 1,
     TVList: [],
   },
 
@@ -46,6 +47,10 @@ const slice = createSlice({
 
     getTVList(state, action) {
       state.TVList = action.payload;
+    },
+
+    changeMoviePage(state, action) {
+      state.moviePage += action.payload;
     },
   },
 });

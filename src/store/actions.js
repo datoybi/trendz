@@ -198,7 +198,6 @@ export const fetchMovie = () => {
 
     try {
       const htmlString = await fetchHTML();
-      // console.log(htmlString);
       const $ = cheerio.load(htmlString);
       const result = [];
 

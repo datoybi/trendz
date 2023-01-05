@@ -2,8 +2,7 @@ import React from "react";
 
 import Social from "./Social/Social";
 import YouTubeTrend from "./YoutubeTrend";
-import SongTrend from "./SongTrend";
-import MovieTrend from "./MovieTrend";
+import Culture from "./Culture/Culture";
 import TVTrend from "./TVTrend";
 import classes from "./Main.module.css";
 
@@ -12,10 +11,9 @@ const Main = () => {
     <main>
       <article>
         <Social />
-        <YouTubeTrend />
-        <SongTrend />
-        <MovieTrend />
-        <TVTrend />
+        <Culture />
+        {/* <YouTubeTrend /> */}
+        {/* <TVTrend /> */}
       </article>
     </main>
   );

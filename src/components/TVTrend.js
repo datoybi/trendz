@@ -1,7 +1,7 @@
 // !: 나중에 노래 순위랑 합치기 컴포넌트 만들어서 사용하기
 import React from "react";
 import { useSelector } from "react-redux";
-import classes from "./SongTrend.module.css";
+import classes from "./Culture/SongTrend.module.css";
 
 const BASE_URL = "https://search.naver.com/search.naver";
 

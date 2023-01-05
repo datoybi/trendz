@@ -23,7 +23,7 @@ const App = () => {
     dispatch(fetchTopNews());
     // dispatch(fetchYoutube());
     // dispatch(fetchSong());
-    // dispatch(fetchMovie());
+    dispatch(fetchMovie());
     // dispatch(fetchTV());
   }, []);
 

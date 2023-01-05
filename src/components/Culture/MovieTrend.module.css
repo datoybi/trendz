@@ -1,7 +1,6 @@
-.section__title {
-  margin: 2rem 0;
-  font-weight: bold;
-  font-size: 1.4rem;
+.movie__wrapper {
+  width: 980px;
+  border: 1px solid;
 }
 
 .container {
@@ -14,10 +13,14 @@
   position: relative;
 }
 
+.movie_wrapper {
+  margin-bottom: 20px;
+}
+
 .poster img {
   width: 180px;
   height: 258px;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .poster span {
   font-size: 2rem;
@@ -26,10 +29,11 @@
   top: 7px;
   left: 10px;
   font-style: italic;
+  z-index: 1;
 }
 
 .rate_wrap {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .rate_wrap img {
@@ -40,14 +44,18 @@
 
 .rate_wrap .rate {
   font-size: 0.9rem;
-  font-weight: 400;
-  margin-left: 0.3rem;
+  font-weight: bold;
+  margin-left: 0.15rem;
 }
 
 .movie_name {
   display: block;
   font-size: 1rem;
-  font-weight: normal;
-  color: gray;
   width: 180px;
+  line-height: 20px;
+}
+
+.poster :hover > img {
+  opacity: 0.8;
+  transition: all 0.1s linear;
 }
