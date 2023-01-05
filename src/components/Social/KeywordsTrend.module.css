@@ -1,0 +1,148 @@
+.keyword_section {
+  background-color: #fafafa;
+}
+
+.keyword__Wrapper {
+  width: 980px;
+  margin-top: 60px;
+}
+
+.section__title {
+  margin-bottom: 48px;
+  margin-top: 48px;
+  font-size: 40px;
+  letter-spacing: 0.009em;
+  line-height: 50px;
+  font-family: "Pretendard Variable";
+  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
+  background: linear-gradient(
+    to right,
+    #f06844 0%,
+    #ee4c54 25%,
+    #d45e95 50%,
+    #9c6ca6 75%,
+    #6583c1 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.relative__keyword {
+  display: inline-block;
+}
+
+.relative__keyword span {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
+
+.keyword__element {
+  padding: 0.5rem 0;
+  border-top: 1px solid #d2d2d7;
+  padding: 32px 0 12px 0;
+}
+
+.keyword__element a {
+  display: block;
+  margin: 1rem 0.3rem;
+}
+
+.news_source {
+  float: right;
+  margin-right: 10px;
+}
+
+.keyword__traffic {
+  color: #6e6e73;
+  float: right;
+  margin-right: 1rem;
+  font-weight: 500;
+}
+
+.searchWords__list li {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.searchWords_date {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.009em;
+}
+
+.main__keyword {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-family: "Pretendard Variable", Pretendard;
+  font-variation-settings: "wght" 800, "wdth" 500;
+}
+
+.keyword__detail {
+  border: 1px solid tomato;
+}
+
+.keyword__news > span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+@keyframes showDetail {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeDetail {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.openAccordion {
+  animation: showDetail 0.5s ease-out forwards;
+}
+
+.closeArccordion {
+  animation: closeDetail 0.5s ease-out forwards;
+}
+
+.show__more {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.show__more > img {
+  width: 35px;
+  width: 35px;
+  position: absolute;
+  top: -13.7px;
+}
+
+.keyword__element a :hover > span {
+  color: #6e6e73;
+  /* font-weight: bold; */
+}

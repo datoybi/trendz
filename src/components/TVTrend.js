@@ -10,7 +10,13 @@ const TVTrend = () => {
   let tvRank = 1;
   let count = 1;
 
-  const TVHTML = TVList.map((tv, index) => {
+  const noDataHtml = (
+    <tr>
+      <td colSpan="4">데이터가 없습니다.</td>
+    </tr>
+  );
+
+  const TVHtml = TVList.map((tv, index) => {
     if (index !== 0) {
       if (TVList[index - 1].rate === TVList[index].rate) {
         count += 1;
@@ -47,7 +53,7 @@ const TVTrend = () => {
               <th className={classes.col4}>시청률</th>
             </tr>
           </thead>
-          <tbody>{TVHTML}</tbody>
+          <tbody>{TVList.length === 0 ? noDataHtml : TVHtml}</tbody>
         </table>
       </div>
     </section>

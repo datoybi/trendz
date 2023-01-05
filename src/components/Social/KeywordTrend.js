@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./TrendKeywords.module.css";
+import classes from "./KeywordsTrend.module.css";
 //  DOMPurify 같은걸로 snitalize 해주기
 
 const KeywordTrend = ({ keyword, pastPubDate, currentIndex, maxCount }) => {
@@ -15,8 +15,13 @@ const KeywordTrend = ({ keyword, pastPubDate, currentIndex, maxCount }) => {
         <span className={classes.keyword__traffic}>{keyword.traffic}회 이상 검색</span>
         {keyword.news.map(newsElement => (
           <a href={newsElement.url} key={newsElement.url} target="_blank" rel="noopener noreferrer">
-            <span dangerouslySetInnerHTML={{ __html: newsElement.title }} />
-            <span className={classes.news_source}>{newsElement.source}</span>
+            <p className={classes.keyword__news}>
+              <span
+                className={classes.title}
+                dangerouslySetInnerHTML={{ __html: newsElement.title }}
+              />
+              <span className={classes.news_source}>{newsElement.source}</span>
+            </p>
           </a>
         ))}
       </div>
@@ -32,6 +37,7 @@ KeywordTrend.propTypes = {
     keyword: PropTypes.string,
     traffic: PropTypes.string,
     news: PropTypes.array,
+    imgURL: PropTypes.string,
   }).isRequired,
   pastPubDate: PropTypes.node.isRequired,
   currentIndex: PropTypes.node.isRequired,

@@ -3,6 +3,7 @@ import * as cheerio from "cheerio";
 import { actions } from "./slice";
 
 const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
+const MAX_KEYWORD_NEWS = 2;
 const TOP_NEWS_URL = "/mostread.json";
 const YOUTUBE_URL = "/youtube-video-rank/top-kr-all-video-day";
 const YOUTUBE_SECOND_URL =
@@ -30,20 +31,20 @@ export const fetchKeyword = () => {
         const pubDate = $(el).children("pubDate").text();
         const keyword = $(el).children("title").text();
         const traffic = $(el).children("ht\\:approx_traffic").text();
+        const imgURL = $(el).children("ht\\:picture").text();
         const news = [];
 
         $(el)
           .children("ht\\:news_item")
           .each(function (index) {
-            if (index >= 2) return;
+            if (index >= MAX_KEYWORD_NEWS) return;
             const title = $(this).children("ht\\:news_item_title").text();
             const url = $(this).children("ht\\:news_item_url").text();
             const source = $(this).children("ht\\:news_item_source").text();
             news.push({ title, url, source });
           });
-        result.push({ pubDate, keyword, traffic, news });
+        result.push({ pubDate, keyword, traffic, news, imgURL });
       });
-
       dispatch(actions.getKeyWord(result));
     } catch (error) {
       console.log(error || "Something went wrong");

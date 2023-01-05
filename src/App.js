@@ -21,10 +21,10 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchKeyword());
     dispatch(fetchTopNews());
-    dispatch(fetchYoutube());
-    dispatch(fetchSong());
-    dispatch(fetchMovie());
-    dispatch(fetchTV());
+    // dispatch(fetchYoutube());
+    // dispatch(fetchSong());
+    // dispatch(fetchMovie());
+    // dispatch(fetchTV());
   }, []);
 
   return (

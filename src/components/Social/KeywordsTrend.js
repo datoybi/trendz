@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import KeywordTrend from "./KeywordTrend";
-import classes from "./TrendKeywords.module.css";
-import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
-import { actions } from "../store/slice";
+import classes from "./KeywordsTrend.module.css";
+import { LOADING_KEYWORD_COUNT } from "../../constants/trendz";
+import { actions } from "../../store/slice";
+import plusIcon from "../../assets/plus_icon.png";
 
 const KeywordsTrend = () => {
   const { keywords } = useSelector(state => state.trend);
@@ -21,19 +22,27 @@ const KeywordsTrend = () => {
     />
   ));
 
-  const showMoreKeyword = () => {
+  const loadMoreKeyword = () => {
     dispatch(actions.increaseKeywordCount());
   };
 
+  const showLoadingButton =
+    keywordTrend.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordTrend.length;
+
   return (
-    <section>
-      <h2 className={classes.section__title}>키워드 Trendz – 많이 검색한 키워드</h2>
-      <ul className={classes.searchWords__list}>{keywordTrend}</ul>
-      {keywordTrend.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordTrend.length && (
-        <button type="button" onClick={showMoreKeyword}>
-          더 로드하기
-        </button>
-      )}
+    <section className={classes.keyword_section}>
+      <div className={classes.keyword__Wrapper}>
+        <h2 className={classes.section__title}>
+          구글에 검색한 <br />
+          인기 급상승 키워드를 확인해보세요.
+        </h2>
+        <ul className={classes.searchWords__list}>{keywordTrend}</ul>
+        {showLoadingButton && (
+          <button className={classes.show__more} type="button" onClick={loadMoreKeyword}>
+            <img src={plusIcon} alt="더보기" />
+          </button>
+        )}
+      </div>
     </section>
   );
 };

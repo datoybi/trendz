@@ -19,8 +19,8 @@ const NewsTrend = () => {
   ));
 
   return (
-    <section className={classes.section__title}>
-      <p>뉴스 Trendz - TOP News</p>
+    <section className={classes.news__section}>
+      <p className={classes.section__title}>뉴스 Trendz - TOP News</p>
       <ul className={classes.news__list}>{newsHTML}</ul>
     </section>
   );

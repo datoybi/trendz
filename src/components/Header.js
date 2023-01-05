@@ -9,9 +9,9 @@ const Header = () => {
         <img src={logo} alt="trendz" />
       </a>
       <nav>
-        <a href="#">Home</a>
-        <a href="#">유머</a>
-        <a href="#">유투브</a>
+        <a href="#">사회</a>
+        <a href="#">엔터</a>
+        <a href="#">문화</a>
       </nav>
     </header>
   );

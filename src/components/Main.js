@@ -1,7 +1,6 @@
 import React from "react";
 
-import TrendKeywords from "./KeywordsTrend";
-import NewsTrend from "./NewsTrend";
+import Social from "./Social/Social";
 import YouTubeTrend from "./YoutubeTrend";
 import SongTrend from "./SongTrend";
 import MovieTrend from "./MovieTrend";
@@ -12,8 +11,7 @@ const Main = () => {
   return (
     <main>
       <article>
-        <TrendKeywords />
-        <NewsTrend />
+        <Social />
         <YouTubeTrend />
         <SongTrend />
         <MovieTrend />
