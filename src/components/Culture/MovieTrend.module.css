@@ -1,84 +1,20 @@
 .movie__wrapper {
-  width: 980px;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.poster {
-  position: relative;
-}
-
-.movie_wrapper {
   margin-bottom: 20px;
-}
-
-.poster img {
-  width: 180px;
-  height: 258px;
-  border-radius: 10px;
-}
-.poster span {
-  font-size: 2rem;
-  position: absolute;
-  color: #fff;
-  top: 7px;
-  left: 10px;
-  font-style: italic;
-  z-index: 1;
-}
-
-.rate_wrap {
-  margin-bottom: 0.4rem;
-}
-
-.rate_wrap img {
-  width: 20px;
-  position: relative;
-  top: 5px;
-}
-
-.rate_wrap .rate {
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-left: 0.15rem;
-}
-
-.movie_name {
-  display: block;
-  font-size: 1rem;
-  width: 180px;
-  line-height: 20px;
-}
-
-.poster :hover > img {
-  opacity: 0.8;
-  transition: all 0.1s linear;
+  width: 980px;
 }
 
 .carouselView {
-  width: 980px;
-  height: 100%;
   overflow: hidden;
 }
 
 .movieItems {
   display: flex;
-  width: 980px;
-  height: 100%;
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s;
 }
 
-.movieItem {
-  width: 980px;
-  height: 100%;
-}
-
-.first {
+.firstIem,
+.secondIem {
   width: 980px;
   height: 100%;
   display: flex;
@@ -86,37 +22,26 @@
   justify-content: space-evenly;
 }
 
-.second {
-  width: 980px;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+.movieButtons {
+  position: relative;
+  font-size: 1rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  bottom: 386px;
 }
 
 .prevButton {
-  position: relative;
-  bottom: 418px;
   left: -35px;
-  font-size: 1rem;
-  background: transparent;
-  border: transparent;
-  cursor: pointer;
 }
 
 .nextButton {
-  position: relative;
-  left: 960px;
-  bottom: 418px;
-  font-size: 1rem;
-  background: transparent;
-  border: transparent;
-  cursor: pointer;
+  left: 955px;
 }
 
 .prevButton img,
 .nextButton img {
-  width: 40px;
+  width: 45px;
 }
 
 .prevButton :hover,
