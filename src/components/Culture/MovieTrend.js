@@ -1,28 +1,26 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import classes from "./MovieTrend.module.css";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import thumbUp from "../../assets/thumbs-up.png";
-import { actions } from "../../store/slice";
+import classes from "./MovieTrend.module.css";
+import nextIcon from "../../assets/next_icon.png";
+import prevIcon from "../../assets/prev_icon.png";
 
 const MOVIE_BASE_URL = "https://movie.daum.net/";
 const DISPLAY_COUNT = 10;
 
 const MovieTrend = () => {
-  const dispatch = useDispatch();
+  const items = useRef();
+  const [carouselIndex, setCarouselIndex] = useState(0);
   const { movieList } = useSelector(state => state.trend);
-  const { moviePage } = useSelector(state => state.trend);
 
-  console.log(moviePage);
+  const firstMovieHtml = movieList.filter((_, index) => index < DISPLAY_COUNT);
+  const secondMovieHtml = movieList.filter((_, index) => index >= DISPLAY_COUNT);
 
-  const selectedMovie = movieList.filter(
-    (_, index) => index >= (moviePage - 1) * DISPLAY_COUNT && index < moviePage * DISPLAY_COUNT,
-  );
-
-  const movieHTML = selectedMovie.map((movie, index) => (
+  const movieElement = movie => (
     <div className={classes.movie_wrapper} key={movie.URL}>
       <div className={classes.poster}>
         <a href={`${MOVIE_BASE_URL}${movie.URL}`} target="_blank" rel="noopener noreferrer">
-          <span>{index + 1}</span>
+          <span>{movie.ranking}</span>
           <img alt={movie.title} src={movie.posterURL} />
         </a>
       </div>
@@ -41,19 +39,27 @@ const MovieTrend = () => {
         {movie.title}
       </a>
     </div>
-  ));
+  );
 
-  const loadNextPage = () => {
-    dispatch(actions.changeMoviePage(1));
+  const movieHTML = (
+    <div className={classes.carouselView}>
+      <div className={classes.movieItems} ref={items}>
+        <div className={classes.movieItem}>
+          <div className={classes.first}>{firstMovieHtml.map(movie => movieElement(movie))}</div>
+        </div>
+        <div className={classes.movieItem}>
+          <div className={classes.second}>{secondMovieHtml.map(movie => movieElement(movie))}</div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const toggleOnClick = newIndex => {
+    items.current.style.transform = `translate3d(-${980 * newIndex}px, 0, 0)`;
+    setCarouselIndex(newIndex);
   };
 
-  const loadBackPage = () => {
-    dispatch(actions.changeMoviePage(-1));
-  };
-
-  const showBackIcon = moviePage !== 1;
-  const showNextIcon = moviePage !== movieList.length / DISPLAY_COUNT;
-
+  // 버튼 생기는것도 transition 으로 할 수 있쥐 csstransition 사용해야 할듯????
   return (
     <section>
       <div className={classes.movie__wrapper}>
@@ -63,14 +69,14 @@ const MovieTrend = () => {
           <br />
         </p>
         <div className={classes.container}>{movieHTML}</div>
-        {showBackIcon && (
-          <button type="button" onClick={loadBackPage}>
-            전
+        {carouselIndex === 1 && (
+          <button type="button" className={classes.prevButton} onClick={() => toggleOnClick(0)}>
+            <img src={prevIcon} alt="다음영화 순위보기" />
           </button>
         )}
-        {showNextIcon && (
-          <button type="button" onClick={loadNextPage}>
-            후
+        {carouselIndex === 0 && (
+          <button className={classes.nextButton} type="button" onClick={() => toggleOnClick(1)}>
+            <img src={nextIcon} alt="다음영화 순위보기" />
           </button>
         )}
       </div>

@@ -201,13 +201,14 @@ export const fetchMovie = () => {
       const $ = cheerio.load(htmlString);
       const result = [];
 
-      $(".list_movieranking > li").each(function (_, el) {
+      $(".list_movieranking > li").each(function (index, el) {
         const posterURL = $(el).find(".poster_movie > img").attr("src");
         const URL = $(el).find(".poster_info > a").attr("href");
         const title = $(el).find(".tit_item > a").text();
         const rate = $(el).find(".txt_grade").text();
+        const ranking = index + 1;
 
-        result.push({ posterURL, URL, title, rate });
+        result.push({ posterURL, URL, title, rate, ranking });
       });
 
       dispatch(actions.getMovieList(result));

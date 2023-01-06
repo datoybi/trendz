@@ -1,6 +1,5 @@
 .movie__wrapper {
   width: 980px;
-  border: 1px solid;
 }
 
 .container {
@@ -58,4 +57,69 @@
 .poster :hover > img {
   opacity: 0.8;
   transition: all 0.1s linear;
+}
+
+.carouselView {
+  width: 980px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.movieItems {
+  display: flex;
+  width: 980px;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s;
+}
+
+.movieItem {
+  width: 980px;
+  height: 100%;
+}
+
+.first {
+  width: 980px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.second {
+  width: 980px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.prevButton {
+  position: relative;
+  bottom: 418px;
+  left: -35px;
+  font-size: 1rem;
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+
+.nextButton {
+  position: relative;
+  left: 960px;
+  bottom: 418px;
+  font-size: 1rem;
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+
+.prevButton img,
+.nextButton img {
+  width: 40px;
+}
+
+.prevButton :hover,
+.nextButton :hover {
+  opacity: 0.6;
 }
