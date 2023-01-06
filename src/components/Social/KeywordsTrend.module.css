@@ -42,7 +42,7 @@
 
 .searchWords__list li {
   width: 100%;
-  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .searchWords_date {
@@ -97,6 +97,23 @@
   }
 }
 
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeShow {
+  animation: show 0.5s ease-out forwards;
+}
+
 .openAccordion {
   animation: showDetail 0.5s ease-out forwards;
 }
@@ -146,4 +163,9 @@
 
 .thumbnail img {
   transition: all 0.2s linear;
+}
+
+.items {
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
 }

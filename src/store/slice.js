@@ -2,8 +2,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 
-const MULTIPLY_LENGTH = 2;
-
 // 데이터 json으로 통일하자
 const slice = createSlice({
   name: "trend",
@@ -24,7 +22,7 @@ const slice = createSlice({
     },
 
     increaseKeywordCount(state) {
-      const newCount = state.keywordCount * MULTIPLY_LENGTH;
+      const newCount = state.keywordCount + LOADING_KEYWORD_COUNT;
       const totalKeyword = state.keywords.length;
       state.keywordCount = totalKeyword < newCount ? totalKeyword : newCount;
     },

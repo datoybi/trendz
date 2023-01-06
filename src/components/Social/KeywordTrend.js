@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./KeywordsTrend.module.css";
 //  DOMPurify 같은걸로 snitalize 해주기
 
-const KeywordTrend = ({ keyword, pastPubDate, currentIndex, maxCount }) => {
+const KeywordTrend = ({ getHeight, keyword, pastPubDate, currentIndex, maxCount }) => {
+  const ref = useRef(null);
   const currentDate = new Date(keyword.pubDate).toLocaleDateString();
   const pastDate = pastPubDate && new Date(pastPubDate).toLocaleDateString();
 
+  useEffect(() => {
+    getHeight(ref.current.offsetHeight);
+  }, []);
+
   const keywordHTML = (
-    <li>
+    <li ref={ref}>
       {pastDate !== currentDate && <span className={classes.searchWords_date}>{currentDate}</span>}
       <div className={classes.keyword__element}>
         <span className={classes.main__keyword}>{keyword.keyword}</span>
@@ -40,10 +45,12 @@ const KeywordTrend = ({ keyword, pastPubDate, currentIndex, maxCount }) => {
     </li>
   );
 
-  return <>{maxCount > currentIndex && keywordHTML}</>;
+  // return <>{maxCount > currentIndex && keywordHTML}</>;
+  return <>{keywordHTML}</>;
 };
 
 KeywordTrend.propTypes = {
+  getHeight: PropTypes.func.isRequired,
   keyword: PropTypes.exact({
     pubDate: PropTypes.string,
     keyword: PropTypes.string,
