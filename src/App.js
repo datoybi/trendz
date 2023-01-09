@@ -22,8 +22,8 @@ const App = () => {
     dispatch(fetchKeyword());
     dispatch(fetchTopNews());
     // dispatch(fetchYoutube());
-    // dispatch(fetchSong());
     dispatch(fetchMovie());
+    dispatch(fetchSong());
     // dispatch(fetchTV());
   }, []);
 

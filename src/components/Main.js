@@ -1,9 +1,8 @@
 import React from "react";
 
 import Social from "./Social/Social";
-import YouTubeTrend from "./YoutubeTrend";
 import Culture from "./Culture/Culture";
-import TVTrend from "./TVTrend";
+import Entertainment from "./Entertainment/Entertainment";
 import classes from "./Main.module.css";
 
 const Main = () => {
@@ -12,8 +11,7 @@ const Main = () => {
       <article>
         <Social />
         <Culture />
-        {/* <YouTubeTrend /> */}
-        {/* <TVTrend /> */}
+        <Entertainment />
       </article>
     </main>
   );

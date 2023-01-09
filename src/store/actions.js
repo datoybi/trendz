@@ -175,9 +175,10 @@ export const fetchSong = () => {
       $(".service_list_song .lst50").each(function (index, el) {
         if (index >= MAX_SONG) return;
         const album = $(el).find("a:eq(0)").attr("title"); // 엘범명
+        const albumCover = $(el).find("a:eq(0)>img").attr("src"); // 엘범명
         const title = $(el).find(".ellipsis:eq(0)").text().trim(); // 노래명
         const singer = $(el).find("a:eq(3)").text(); // 가수
-        result.push({ album, title, singer });
+        result.push({ album, title, singer, albumCover });
       });
       dispatch(actions.getSongList(result));
     } catch (error) {

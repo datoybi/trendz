@@ -6,7 +6,7 @@ const Culture = () => {
   return (
     <>
       <MovieTrend />
-      {/* <SongTrend /> */}
+      <SongTrend />
     </>
   );
 };

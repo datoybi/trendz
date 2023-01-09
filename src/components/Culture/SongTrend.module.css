@@ -1,41 +1,73 @@
-.section__title {
-  margin: 1rem 0;
-  font-weight: bold;
-  font-size: 1.4rem;
+.song__section {
+  background-color: #fafafa;
+}
+
+.song__wrapper {
+  width: 980px;
+  margin-bottom: 100px;
+}
+
+.table_wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 4px 12px 40px 6px rgb(0 0 0 / 9%);
 }
 
 .song_table {
-  width: 50%;
-  border: 1px solid;
+  width: 100%;
+  height: 100%;
   table-layout: fixed;
+  border-collapse: collapse;
+  border-style: hidden;
+  text-align: left;
 }
 
 .song_table th,
 td {
-  border: 1px solid;
   vertical-align: middle;
-  height: 30px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
+.song_table th {
+  padding-top: 23px;
+  padding-left: 35px;
+  padding-bottom: 23px;
+  font-weight: 600;
+}
+
 .song_table td {
-  text-align: center;
+  padding: 4px 35px;
 }
 
-.col1 {
-  width: 10%;
+.title_tr {
+  width: 40%;
 }
 
-.col2 {
+.singer_tr {
+  width: 20%;
+}
+
+.album_tr {
   width: 35%;
 }
 
-.col3 {
-  width: 25%;
+.cover_col {
+  width: 10%;
 }
 
-.col4 {
-  width: 30%;
+.rating_col {
+  width: 7%;
+}
+
+.title_col {
+  width: 35%;
+}
+
+tr:nth-child(2n) {
+  background-color: #eaeaea;
 }

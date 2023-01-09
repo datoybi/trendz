@@ -7,7 +7,7 @@ const MOVIE_BASE_URL = "https://movie.daum.net/";
 
 const MovieElement = ({ movie }) => {
   return (
-    <div>
+    <div className={classes.wrapper}>
       <div className={classes.poster}>
         <a href={`${MOVIE_BASE_URL}${movie.URL}`} target="_blank" rel="noopener noreferrer">
           <span>{movie.ranking}</span>
