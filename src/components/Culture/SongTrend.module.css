@@ -7,32 +7,6 @@
   margin-bottom: 100px;
 }
 
-.table_wrap {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 4px 12px 40px 6px rgb(0 0 0 / 9%);
-}
-
-.song_table {
-  width: 100%;
-  height: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-style: hidden;
-  text-align: left;
-}
-
-.song_table th,
-td {
-  vertical-align: middle;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 .song_table th {
   padding-top: 23px;
   padding-left: 35px;
@@ -70,65 +44,4 @@ td {
 
 tr:nth-child(2n) {
   background-color: #eaeaea;
-}
-
-/* !: TV */
-
-.rate_col {
-  width: 25%;
-}
-
-.program_col {
-  width: 55%;
-}
-
-.channel_col {
-  width: 30%;
-}
-
-.program_tr {
-  width: 70%;
-}
-
-.views_tr {
-  width: 40%;
-}
-
-.table_container {
-  width: 45%;
-  max-width: 600px;
-  margin-right: 20px;
-}
-
-.table_wrapper {
-  display: flex;
-}
-
-.tv_table tbody td {
-  padding: 20px 15px;
-}
-
-.tv_table tbody td:nth-child(1) {
-  padding-left: 35px;
-  padding-right: 35px;
-}
-
-.tv_table tbody td:nth-child(2) {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.tv_table tbody td:nth-child(3) {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.tv_table tbody td:nth-child(4) {
-  padding-left: 35px;
-  padding-right: 35px;
-}
-
-.tv_table tbody tr:hover {
-  cursor: pointer;
-  font-weight: bold;
 }

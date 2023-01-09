@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import classes from "./SongTrend.module.css";
 import SongElement from "./SongElement";
+import Table from "../UI/Table";
 
 const DEFAULT_SONG_TITLE = ["BTS", "Dynamite"];
-// table reuseable UI로 바꾸끼
+
 const SongTrend = () => {
   const { songList } = useSelector(state => state.trend);
 
-  const noDataHtml = (
+  const emptyHtml = (
     <tr>
       <td colSpan="4">데이터가 없습니다.</td>
     </tr>
@@ -26,6 +27,7 @@ const SongTrend = () => {
   };
 
   const [bestSinger, bestSong] = getBestSinger();
+
   return (
     <section className={classes.song__section}>
       <div className={classes.song__wrapper}>
@@ -33,25 +35,23 @@ const SongTrend = () => {
           지금 뜨는 노래는? <br />
           &apos;{bestSinger}&apos;의 &apos;{bestSong}&apos;🎶
         </p>
-        <div className={classes.table_wrap}>
-          <table className={classes.song_table}>
-            <colgroup>
-              <col className={classes.cover_col} />
-              <col className={classes.rating_col} />
-              <col className={classes.title_col} />
-            </colgroup>
-            <thead>
-              <tr>
-                <th colSpan="3" className={classes.title_tr}>
-                  노래명
-                </th>
-                <th className={classes.singer_tr}>가수명</th>
-                <th className={classes.album_tr}>앨범</th>
-              </tr>
-            </thead>
-            <tbody>{songList.length === 0 ? noDataHtml : getSongElement(songList)}</tbody>
-          </table>
-        </div>
+        <Table className={classes.song_table}>
+          <colgroup>
+            <col className={classes.cover_col} />
+            <col className={classes.rating_col} />
+            <col className={classes.title_col} />
+          </colgroup>
+          <thead>
+            <tr>
+              <th colSpan="3" className={classes.title_tr}>
+                노래
+              </th>
+              <th className={classes.singer_tr}>가수</th>
+              <th className={classes.album_tr}>앨범</th>
+            </tr>
+          </thead>
+          <tbody>{songList.length === 0 ? emptyHtml : getSongElement(songList)}</tbody>
+        </Table>
       </div>
     </section>
   );

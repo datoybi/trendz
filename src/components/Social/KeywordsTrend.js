@@ -14,10 +14,6 @@ const KeywordsTrend = () => {
   const { keywordCount } = useSelector(state => state.trend);
   const dispatch = useDispatch();
 
-  const getHeight = height => {
-    setKeywordHeight(prev => [...prev, height]);
-  };
-
   const calculateHeight = () => {
     const height = keywordHeight.reduce((acc, element, index) => {
       if (keywordCount > index) return acc + element;
@@ -30,6 +26,10 @@ const KeywordsTrend = () => {
   useEffect(() => {
     calculateHeight();
   }, [keywordHeight, keywordCount]);
+
+  const getHeight = height => {
+    setKeywordHeight(prev => [...prev, height]);
+  };
 
   const keywordTrend = keywords.map((keyword, index) => (
     <KeywordTrend

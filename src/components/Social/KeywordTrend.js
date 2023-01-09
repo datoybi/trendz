@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./KeywordsTrend.module.css";
 //  DOMPurify 같은걸로 snitalize 해주기
 
-const KeywordTrend = ({ getHeight, keyword, pastPubDate, currentIndex, maxCount }) => {
+const KeywordTrend = ({ getHeight, keyword, pastPubDate }) => {
   const ref = useRef(null);
   const currentDate = new Date(keyword.pubDate).toLocaleDateString();
   const pastDate = pastPubDate && new Date(pastPubDate).toLocaleDateString();
@@ -45,7 +45,6 @@ const KeywordTrend = ({ getHeight, keyword, pastPubDate, currentIndex, maxCount 
     </li>
   );
 
-  // return <>{maxCount > currentIndex && keywordHTML}</>;
   return <>{keywordHTML}</>;
 };
 
@@ -59,8 +58,6 @@ KeywordTrend.propTypes = {
     imgURL: PropTypes.string,
   }).isRequired,
   pastPubDate: PropTypes.node.isRequired,
-  currentIndex: PropTypes.node.isRequired,
-  maxCount: PropTypes.node.isRequired,
 };
 
 export default KeywordTrend;

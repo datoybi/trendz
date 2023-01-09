@@ -3,9 +3,12 @@ import { useDispatch } from "react-redux";
 
 import "./reset.css";
 import "./App.css";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
+import Header from "./components/Layout/Header";
+import Footer from "./components/Layout/Footer";
+import Social from "./components/Social/Social";
+import Culture from "./components/Culture/Culture";
+import Entertainment from "./components/Entertainment/Entertainment";
+
 import {
   fetchKeyword,
   fetchSong,
@@ -30,7 +33,13 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Main />
+      <main>
+        <article>
+          <Social />
+          <Culture />
+          <Entertainment />
+        </article>
+      </main>
       <Footer />
     </div>
   );

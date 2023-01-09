@@ -191,7 +191,7 @@ const YouTubeTrend = () => {
       <div className={classes.youtube__wrapper}>
         <p className="section__title">
           24시간 동안 한국에서 <br />
-          가장 많이 본 유투브를 시청하세요.
+          가장 많이 본 유튜브를 시청하세요.
         </p>
         <ol className={classes.youtube_list}>{youtubeListHtml}</ol>
       </div>

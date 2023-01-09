@@ -131,10 +131,15 @@
   background: transparent;
 }
 
+.show__more:active > img {
+  transform: rotate(1turn);
+}
+
 .show__more > img {
   width: 40px;
   position: absolute;
   top: -16.7px;
+  transition: transform 0.5s;
 }
 
 .show__more :hover {
