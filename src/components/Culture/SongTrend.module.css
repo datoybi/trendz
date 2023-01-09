@@ -71,3 +71,64 @@ td {
 tr:nth-child(2n) {
   background-color: #eaeaea;
 }
+
+/* !: TV */
+
+.rate_col {
+  width: 25%;
+}
+
+.program_col {
+  width: 55%;
+}
+
+.channel_col {
+  width: 30%;
+}
+
+.program_tr {
+  width: 70%;
+}
+
+.views_tr {
+  width: 40%;
+}
+
+.table_container {
+  width: 45%;
+  max-width: 600px;
+  margin-right: 20px;
+}
+
+.table_wrapper {
+  display: flex;
+}
+
+.tv_table tbody td {
+  padding: 20px 15px;
+}
+
+.tv_table tbody td:nth-child(1) {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.tv_table tbody td:nth-child(2) {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tv_table tbody td:nth-child(3) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tv_table tbody td:nth-child(4) {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.tv_table tbody tr:hover {
+  cursor: pointer;
+  font-weight: bold;
+}

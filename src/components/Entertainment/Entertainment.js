@@ -6,7 +6,7 @@ const Entertainment = () => {
   return (
     <>
       <YouTubeTrend />
-      {/* <TVTrend /> */}
+      <TVTrend />
     </>
   );
 };

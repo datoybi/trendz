@@ -3,6 +3,7 @@
 }
 
 .youtube__wrapper {
+  margin-bottom: 100px;
   width: 980px;
 }
 
@@ -84,7 +85,7 @@
 .youtube_list .info_wrap {
   margin-top: 10px;
   position: relative;
-  height: 66px;
+  height: 80px;
 }
 
 .youtube_list .info {
@@ -95,6 +96,7 @@
 .youtube_list .info {
   display: -webkit-box;
   padding-right: 10px;
+  margin-left: 35px;
   overflow: hidden;
   max-height: 40px;
   font-size: 15px;
@@ -136,7 +138,7 @@
 
 .youtube_list .view {
   position: absolute;
-  bottom: -3px;
+  bottom: 10px;
   padding-left: 18px;
   font-size: 14px;
   line-height: 20px;

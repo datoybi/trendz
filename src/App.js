@@ -24,7 +24,7 @@ const App = () => {
     // dispatch(fetchYoutube());
     dispatch(fetchMovie());
     dispatch(fetchSong());
-    // dispatch(fetchTV());
+    dispatch(fetchTV());
   }, []);
 
   return (

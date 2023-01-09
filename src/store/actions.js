@@ -7,8 +7,8 @@ const MAX_KEYWORD_NEWS = 2;
 const TOP_NEWS_URL = "/mostread.json";
 const MAX_TOP_NEWS = 10;
 const YOUTUBE_URL = "/youtube-video-rank/top-kr-all-video-day";
-const YOUTUBE_SECOND_URL =
-  "/youtube-video-rank/_top-videos?country=kr&category=all&offset=5&pageSize=7";
+const TOTAL_YOUTUBE_LIST = 20 - 5;
+const YOUTUBE_SECOND_URL = `/youtube-video-rank/_top-videos?country=kr&category=all&offset=5&pageSize=${TOTAL_YOUTUBE_LIST}`;
 const SONG_URL = "/chart/";
 const MAX_SONG = 20;
 const MOVIE_URL = "/ranking/reservation";
@@ -69,9 +69,13 @@ export const fetchTopNews = () => {
       const result = Object.entries(records).reduce((acc, [_, value], index) => {
         if (index >= MAX_TOP_NEWS) return acc;
         const { promo } = value;
-        const { shortHeadline } = promo.headlines;
-        const { assetUri } = promo.locators;
-        return [...acc, [shortHeadline, assetUri]];
+        const headlines = !promo.headlines.shortHeadline
+          ? promo.headlines.seoHeadline
+          : promo.headlines.shortHeadline;
+        let url = !promo.locators.assetUri ? promo.locators.canonicalUrl : promo.locators.assetUri;
+
+        if (url.includes("https://www.bbc.com")) [, url] = url.split("https://www.bbc.com");
+        return [...acc, [headlines, url]];
       }, []);
 
       dispatch(actions.getNews(result));

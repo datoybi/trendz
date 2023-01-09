@@ -4,9 +4,14 @@ import { useSelector } from "react-redux";
 import classes from "../Culture/SongTrend.module.css";
 
 const BASE_URL = "https://search.naver.com/search.naver";
+const TABLE_COUNT = 10;
 
 const TVTrend = () => {
   const { TVList } = useSelector(state => state.trend);
+
+  const firstTvList = TVList.filter((el, index) => index < TABLE_COUNT);
+  const secondTvList = TVList.filter((el, index) => index >= TABLE_COUNT);
+
   let tvRank = 1;
   let count = 1;
 
@@ -16,45 +21,86 @@ const TVTrend = () => {
     </tr>
   );
 
-  const TVHtml = TVList.map((tv, index) => {
-    if (index !== 0) {
-      if (TVList[index - 1].rate === TVList[index].rate) {
-        count += 1;
-      } else {
-        tvRank += count;
-        count = 1;
-      }
-    }
+  const handleOnClick = url => {
+    window.open(`${BASE_URL}${url}`);
+  };
 
-    return (
-      <tr key={`${tvRank}_${tv.title}`}>
-        <td>{tvRank}</td>
-        <td>
-          <a href={`${BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
-            {tv.title}
-          </a>
-        </td>
-        <td>{tv.cast}</td>
-        <td>{tv.rate}</td>
-      </tr>
-    );
-  });
+  const getHtml = list => {
+    const TVHtml = list.map((tv, index) => {
+      if (index !== 0) {
+        if (list[index - 1].rate === list[index].rate) {
+          count += 1;
+        } else {
+          tvRank += count;
+          count = 1;
+        }
+      }
+
+      return (
+        <tr key={`${tvRank}_${tv.title}`} onClick={() => handleOnClick(tv.url)}>
+          <td>{tvRank}</td>
+          <td>
+            <a href={`${BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
+              {tv.title}
+            </a>
+          </td>
+          <td>{tv.cast}</td>
+          <td>{tv.rate}</td>
+        </tr>
+      );
+    });
+    return TVHtml;
+  };
 
   return (
-    <section>
-      <p className={classes.section__title}>TV Trendz - 한 주간 시청률 수 높은 TV 프로그램</p>
-      <div>
-        <table className={classes.song_table}>
-          <thead>
-            <tr>
-              <th className={classes.col1}>순위</th>
-              <th className={classes.col2}>프로그램</th>
-              <th className={classes.col3}>채널</th>
-              <th className={classes.col4}>시청률</th>
-            </tr>
-          </thead>
-          <tbody>{TVList.length === 0 ? noDataHtml : TVHtml}</tbody>
-        </table>
+    <section className={classes.song__section}>
+      <div className={classes.song__wrapper}>
+        <p className="section__title">
+          한 주간 높은 시청률을 기록한
+          <br /> TV 프로그램을 알아보세요.
+        </p>
+        <div className={classes.table_wrapper}>
+          <div className={classes.table_container}>
+            <div className={classes.table_wrap}>
+              <table className={`${classes.song_table} ${classes.tv_table}`}>
+                <colgroup>
+                  <col className={classes.rate_col} />
+                  <col className={classes.program_col} />
+                  <col className={classes.channel_col} />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th colSpan="3" className={classes.program_tr}>
+                      프로그램
+                    </th>
+                    <th className={classes.views_tr}>시청률</th>
+                  </tr>
+                </thead>
+                <tbody>{TVList.length === 0 ? noDataHtml : getHtml(firstTvList)}</tbody>
+              </table>
+            </div>
+          </div>
+          <div className={classes.table_container}>
+            <div className={classes.table_wrap}>
+              <table className={`${classes.song_table} ${classes.tv_table}`}>
+                <colgroup>
+                  <col className={classes.rate_col} />
+                  <col className={classes.program_col} />
+                  <col className={classes.channel_col} />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th colSpan="3" className={classes.program_tr}>
+                      프로그램
+                    </th>
+                    <th className={classes.views_tr}>시청률</th>
+                  </tr>
+                </thead>
+                <tbody>{TVList.length === 0 ? noDataHtml : getHtml(secondTvList)}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

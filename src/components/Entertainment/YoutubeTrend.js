@@ -95,6 +95,65 @@ const youtubeJSON = [
     host: " 도장TV",
     view: " 50.82만 누적 조회수 ",
   },
+  {
+    imgURL: "https://i.ytimg.com/vi/SP-LJqVgQuw/maxresdefault.jpg",
+    videoId: "SP-LJqVgQuw",
+    title: "뉴진스 초대석",
+    host: " 침착맨",
+    view: " 227.14만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/hDXxKC7gE8Y/maxresdefault.jpg",
+    videoId: "hDXxKC7gE8Y",
+    title: "Team Faker 인터뷰🎤 | 2023 LCK KICK-OFF",
+    host: " LCK",
+    view: " 12.62만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/LQAtD-O8x48/maxresdefault.jpg",
+    videoId: "LQAtD-O8x48",
+    title:
+      "Kane, Son & Doherty score as Spurs put FOUR past Palace | HIGHLIGHTS | Crystal Palace 0-4 Spurs",
+    host: " Tottenham Hotspur",
+    view: " 105.93만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/WHKALveS5lg/maxresdefault.jpg",
+    videoId: "WHKALveS5lg",
+    title: "3D펜으로 하는 도어즈 실사판 【산냥고】 | 고양이산책",
+    host: " 고양이산책",
+    view: " 8.6만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/1hcdQixxJdA/maxresdefault.jpg",
+    videoId: "1hcdQixxJdA",
+    title:
+      "뉴진스 (NewJeans) _ OMG | 1theKILLPO | 원더킬포 | 킬포인트 | 퍼포먼스 | Performance | 4K | 민지 하니 다니엘 해린 혜인",
+    host: " 1theK Originals - 원더케이 오리지널",
+    view: " 375.83만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/_9HE3qI9EUQ/maxresdefault.jpg",
+    videoId: "_9HE3qI9EUQ",
+    title: "[05학번이즈히어] 신도시 새언니는 시누이와 어떤 사이인가",
+    host: " 피식대학Psick Univ",
+    view: " 63.18만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/CxKlKGwo2bE/maxresdefault.jpg",
+    videoId: "CxKlKGwo2bE",
+    title:
+      "[아는형님] 진성준X모현민 역시 혐관이 제일..🤤 현실에서 투닥거리는 재벌집 장손 부부 김남희X박지현｜핫클립｜JTBC 230107 방송 외",
+    host: " JTBC Voyage",
+    view: " 41.25만 누적 조회수 ",
+  },
+  {
+    imgURL: "https://i.ytimg.com/vi/vbkdpZVx4BQ/maxresdefault.jpg",
+    videoId: "vbkdpZVx4BQ",
+    title: "한국인 사위를 처음 만나는 일본 부모님..",
+    host: " 네루짱NERU",
+    view: " 29.58만 누적 조회수 ",
+  },
 ];
 
 const YouTubeTrend = () => {
@@ -103,41 +162,27 @@ const YouTubeTrend = () => {
 
   const youtubeListHtml = youtubeList.map((el, index) => (
     <li key={el.videoId}>
-      <div className={classes.img_wrap}>
-        <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
+      <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
+        <div className={classes.img_wrap}>
           <img src={el.imgURL} alt={el.imgURL} />
-        </a>
-      </div>
-      <div className={classes.info_wrap}>
-        <div className={classes.rank}>
-          <span className={classes.num}>
-            <span className="blind">랭킹</span>
-            {index + 1}
-          </span>
         </div>
-        <div className={classes.info}>
-          <a
-            href={`${YOUTUBE_PLAY_URL}${el.videoId}`}
-            className={classes.title}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {el.title}
-          </a>
-          <a
-            href={`${YOUTUBE_PLAY_URL}${el.videoId}`}
-            className={classes.host}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {el.host}
-          </a>
-          <span className={classes.view}>
-            <span className="blind">뷰</span>
-            {`조회수 ${el.view.replace(" 누적 조회수", "")}`}
-          </span>
+        <div className={classes.info_wrap}>
+          <div className={classes.rank}>
+            <span className={classes.num}>
+              <span className="blind">랭킹</span>
+              {index + 1}
+            </span>
+          </div>
+          <div className={classes.info}>
+            <span className={classes.title}>{el.title}</span>
+            <span className={classes.host}>{el.host}</span>
+            <span className={classes.view}>
+              <span className="blind">뷰</span>
+              {`조회수 ${el.view.replace(" 누적 조회수", "")}`}
+            </span>
+          </div>
         </div>
-      </div>
+      </a>
     </li>
   ));
 
