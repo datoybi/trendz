@@ -1,4 +1,3 @@
-import axios from "axios";
 import { actions } from "./slice";
 import {
   keywordCrawling,
@@ -9,6 +8,8 @@ import {
   movieCrawling,
   TVCrawling,
 } from "./crawling";
+import { sendRequest } from "../utils/http";
+import ERROR_MESSAGES from "../constants/errorMessage";
 
 const GOOGLE_TRENDS_URL = "/trends/trendingsearches/daily/rss?geo=KR";
 const TOP_NEWS_URL = "/mostread.json";
@@ -21,133 +22,67 @@ const TV_URL = "/search.naver?where=nexearch&sm=tab_etc&mra=blUw&qvt=0&query=주
 
 export const fetchKeyword = () => {
   return async dispatch => {
-    const fetchHTML = async () => {
-      const trendProxy = window.location.hostname === "localhost" ? "" : "/trend_proxy";
-      const response = await axios.get(`${trendProxy}${GOOGLE_TRENDS_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
-
-    try {
-      const htmlString = await fetchHTML();
-      const result = keywordCrawling(htmlString);
-      dispatch(actions.getKeyWord(result));
-    } catch (error) {
-      console.log(error || "Something went wrong");
-      // 나중에 에러처리도 해주기
-    }
+    const trendProxy = window.location.hostname === "localhost" ? "" : "/trend_proxy";
+    const url = `${trendProxy}${GOOGLE_TRENDS_URL}`;
+    const htmlString = await sendRequest(url, ERROR_MESSAGES.KEYWORD_FETCH_ERROR);
+    const result = keywordCrawling(htmlString);
+    dispatch(actions.getKeyWord(result));
   };
 };
 
 export const fetchTopNews = () => {
   return async dispatch => {
-    const fetchHTML = async () => {
-      const newsProxy = window.location.hostname === "localhost" ? "" : "/news_proxy";
-      const response = await axios.get(`${newsProxy}${TOP_NEWS_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
-
-    try {
-      const { records } = await fetchHTML();
-      const result = newsCrawling(records);
-      dispatch(actions.getNews(result));
-    } catch (error) {
-      console.log(error || "Something went wrong");
-      // 나중에 에러처리도 해주기
-    }
+    const newsProxy = window.location.hostname === "localhost" ? "" : "/news_proxy";
+    const url = `${newsProxy}${TOP_NEWS_URL}`;
+    const { records } = await sendRequest(url, ERROR_MESSAGES.NEWS_FETCH_ERROR);
+    const result = newsCrawling(records);
+    dispatch(actions.getNews(result));
   };
 };
 
 export const fetchYoutube = () => {
   return async dispatch => {
-    const fetchHTML = async () => {
-      const youtubeProxy = window.location.hostname === "localhost" ? "" : "/youtube_proxy";
-      const response = await axios.get(`${youtubeProxy}${YOUTUBE_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
+    const youtubeProxy = window.location.hostname === "localhost" ? "" : "/youtube_proxy";
 
-    const fetchSecondHTML = async () => {
-      const youtubeProxy = window.location.hostname === "localhost" ? "" : "/youtube_proxy";
-      const response = await axios.get(`${youtubeProxy}${YOUTUBE_SECOND_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
+    const firstUrl = `${youtubeProxy}${YOUTUBE_URL}`;
+    const htmlString = await sendRequest(firstUrl, ERROR_MESSAGES.YOUTUBE_FETCH_ERROR);
+    let result = youtubeFirstCrawling(htmlString);
 
-    try {
-      const htmlString = await fetchHTML();
-      let result = youtubeFirstCrawling(htmlString);
-
-      const secondHtmlString = await fetchSecondHTML();
-      const newSecondResult = youtubeSecondCrawling(secondHtmlString);
-      result = [...result, ...newSecondResult];
-
-      dispatch(actions.getYoutube(result));
-    } catch (error) {
-      console.log(error || "Something went wrong");
-      // 나중에 에러처리도 해주기
-    }
+    const secondUrl = `${youtubeProxy}${YOUTUBE_SECOND_URL}`;
+    const secondHtmlString = await sendRequest(secondUrl, ERROR_MESSAGES.YOUTUBE_FETCH_ERROR);
+    const newSecondResult = youtubeSecondCrawling(secondHtmlString);
+    result = [...result, ...newSecondResult];
+    dispatch(actions.getYoutube(result));
   };
 };
 
 export const fetchSong = () => {
   return async dispatch => {
-    const fetchHTML = async () => {
-      const songProxy = window.location.hostname === "localhost" ? "" : "/song_proxy";
-      const response = await axios.get(`${songProxy}${SONG_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
+    const songProxy = window.location.hostname === "localhost" ? "" : "/song_proxy";
+    const url = `${songProxy}${SONG_URL}`;
+    const htmlString = await sendRequest(url, ERROR_MESSAGES.MUSIC_FETCH_ERROR);
+    const result = songCrawling(htmlString);
 
-    try {
-      const htmlString = await fetchHTML();
-      const result = songCrawling(htmlString);
-
-      dispatch(actions.getSongList(result));
-    } catch (error) {
-      console.log(error || "Something went wrong");
-      // 나중에 에러처리도 해주기
-    }
+    dispatch(actions.getSongList(result));
   };
 };
 
 export const fetchMovie = () => {
   return async dispatch => {
-    const fetchHTML = async () => {
-      const movieProxy = window.location.hostname === "localhost" ? "" : "/movie_proxy";
-      const response = await axios.get(`${movieProxy}${MOVIE_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
-
-    try {
-      const htmlString = await fetchHTML();
-      const result = movieCrawling(htmlString);
-      dispatch(actions.getMovieList(result));
-    } catch (error) {
-      console.log(error || "Something went wrong");
-      // 나중에 에러처리도 해주기
-    }
+    const movieProxy = window.location.hostname === "localhost" ? "" : "/movie_proxy";
+    const url = `${movieProxy}${MOVIE_URL}`;
+    const htmlString = await sendRequest(url, ERROR_MESSAGES.MOVIE_FETCH_ERROR);
+    const result = movieCrawling(htmlString);
+    dispatch(actions.getMovieList(result));
   };
 };
 
 export const fetchTV = () => {
   return async dispatch => {
-    const fetchHTML = async () => {
-      const tvProxy = window.location.hostname === "localhost" ? "" : "/tv_proxy";
-      const response = await axios.get(`${tvProxy}${TV_URL}`);
-      if (!response.data) throw new Error("Could not fetch data!");
-      return response.data;
-    };
-
-    try {
-      const htmlString = await fetchHTML();
-      const result = TVCrawling(htmlString);
-      dispatch(actions.getTVList(result));
-    } catch (error) {
-      console.log(error || "Something went wrong");
-      // 나중에 에러처리도 해주기
-    }
+    const tvProxy = window.location.hostname === "localhost" ? "" : "/tv_proxy";
+    const url = `${tvProxy}${TV_URL}`;
+    const htmlString = await sendRequest(url, ERROR_MESSAGES.TV_FETCH_ERROR);
+    const result = TVCrawling(htmlString);
+    dispatch(actions.getTVList(result));
   };
 };
