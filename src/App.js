@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import "./reset.css";
@@ -19,28 +19,41 @@ import {
 } from "./store/actions";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchKeyword());
-    dispatch(fetchTopNews());
-    // dispatch(fetchYoutube());
-    dispatch(fetchMovie());
-    dispatch(fetchSong());
-    dispatch(fetchTV());
+    const initData = async () => {
+      Promise.all([
+        await dispatch(fetchKeyword()),
+        await dispatch(fetchTopNews()),
+        await dispatch(fetchMovie()),
+        // await dispatch(fetchYoutube()),
+        await dispatch(fetchSong()),
+        await dispatch(fetchTV()),
+      ]).then(setIsLoading(false));
+    };
+
+    initData();
   }, []);
 
   return (
     <div className="App">
-      <Header />
-      <main>
-        <article>
-          <Social />
-          <Culture />
-          <Entertainment />
-        </article>
-      </main>
-      <Footer />
+      {isLoading ? (
+        <div>LOADING...</div>
+      ) : (
+        <>
+          <Header />
+          <main>
+            <article>
+              <Social />
+              <Culture />
+              <Entertainment />
+            </article>
+          </main>
+          <Footer />
+        </>
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 .table_container {
-  width: 45%;
+  width: 50%;
   max-width: 600px;
   margin-right: 20px;
 }
@@ -41,7 +41,7 @@
 }
 
 .rate_col {
-  width: 25%;
+  width: 32%;
 }
 
 .program_col {
