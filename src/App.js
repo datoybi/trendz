@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 
 import "./reset.css";
 import "./App.css";
-import Header from "./components/Layout/Header";
 import Nav from "./components/Layout/Nav";
 import Footer from "./components/Layout/Footer";
 import Home from "./components/Layout/Home";
@@ -60,41 +59,11 @@ const App = () => {
     // return () => observer.disconnect();
   }, []);
 
-  const handleSocialClick = () => {
-    keywordRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  const handleEnterClick = () => {
-    youtubeRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  const handleCultureClick = () => {
-    movieRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
   return (
     <div className="App">
-      <Home
-        handleSocialClick={handleSocialClick}
-        handleCultureClick={handleCultureClick}
-        handleEnterClick={handleEnterClick}
-      />
-      {/* <Header /> */}
       <header>
-        <Nav
-          handleSocialClick={handleSocialClick}
-          handleCultureClick={handleCultureClick}
-          handleEnterClick={handleEnterClick}
-        />
+        <Home />
+        <Nav refs={[keywordRef, youtubeRef, movieRef]} />
       </header>
       <main>
         <article>

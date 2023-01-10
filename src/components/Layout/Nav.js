@@ -1,9 +1,32 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./Nav.module.css";
 
-const Nav = ({ handleSocialClick, handleCultureClick, handleEnterClick }) => {
+const Nav = ({ refs }) => {
+  const [keywordRef, youtubeRef, movieRef] = refs;
+
+  const handleSocialClick = () => {
+    keywordRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleEnterClick = () => {
+    youtubeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleCultureClick = () => {
+    movieRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <nav>
       <span role="button" tabIndex={0} onClick={handleSocialClick}>

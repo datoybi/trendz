@@ -139,7 +139,7 @@
   width: 40px;
   position: absolute;
   top: -16.7px;
-  transition: transform 0.5s;
+  transition: transform 0.3s;
 }
 
 .show__more :hover {
@@ -171,6 +171,6 @@
 }
 
 .items {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
   overflow: hidden;
 }
