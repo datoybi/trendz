@@ -2,7 +2,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LOADING_KEYWORD_COUNT } from "../constants/trendz";
 
-// 데이터 json으로 통일하자
 const slice = createSlice({
   name: "trend",
   initialState: {

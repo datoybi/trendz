@@ -11,7 +11,7 @@ import Entertainment from "./components/Entertainment/Entertainment";
 
 import {
   fetchKeyword,
-  fetchSong,
+  fetchMusic,
   fetchTopNews,
   fetchYoutube,
   fetchTV,
@@ -29,7 +29,7 @@ const App = () => {
         await dispatch(fetchTopNews()),
         await dispatch(fetchMovie()),
         // await dispatch(fetchYoutube()),
-        await dispatch(fetchSong()),
+        await dispatch(fetchMusic()),
         await dispatch(fetchTV()),
       ]).then(setIsLoading(false));
     };

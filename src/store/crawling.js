@@ -1,10 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable func-names */
 import * as cheerio from "cheerio";
+import { NEWS_BASE_URL } from "../constants/url";
 
 const MAX_KEYWORD_NEWS = 2;
 const MAX_TOP_NEWS = 10;
-const NEWS_BASE_URL = "https://www.bbc.com";
 const MAX_SONG = 20;
 
 export const keywordCrawling = htmlString => {

@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classes from "./TVElement.module.css";
 import Table from "../UI/Table";
-
-const BASE_URL = "https://search.naver.com/search.naver";
+import { TV_BASE_URL } from "../../constants/url";
 
 const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
   const emptyHtml = (
@@ -13,7 +12,7 @@ const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
   );
 
   const handleOnClick = url => {
-    window.open(`${BASE_URL}${url}`);
+    window.open(`${TV_BASE_URL}${url}`);
   };
 
   const calculateRanking = (index, list) => {
@@ -32,7 +31,7 @@ const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
         <tr key={`${getRank()}_${tv.title}`} onClick={() => handleOnClick(tv.url)}>
           <td>{getRank()}</td>
           <td>
-            <a href={`${BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
+            <a href={`${TV_BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
               {tv.title}
             </a>
           </td>

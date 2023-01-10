@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import classes from "./NewsTrend.module.css";
-
-const NEWS_BASE_URL = "https://www.bbc.com";
+import { NEWS_BASE_URL } from "../../constants/url";
 
 const NewsTrend = () => {
   const { news } = useSelector(state => state.trend);
