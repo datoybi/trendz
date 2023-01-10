@@ -1,20 +1,49 @@
 nav {
-  /* border: 1px solid; */
   width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 nav span {
   font-size: 1rem;
   font-weight: 400;
-  padding: 15px 1rem;
-  margin: 0 4rem;
-  /* color: #fff; */
+  padding: 15px 2.5rem;
+  /* margin: 0 2rem; */
+  color: #fff;
+  border-bottom: 1.7px solid #fff;
 }
 
 nav span:hover {
   cursor: pointer;
+}
+
+.fixed_nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(255, 255, 255, 0.7);
+  animation-delay: 1.5s;
+  animation: fadeIn 0.3s;
+  border-bottom: 1px solid #d2d2d7;
+}
+
+.fixed_nav span {
+  color: #000;
+  font-weight: 600;
+  border-bottom: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    height: 0;
+  }
+  to {
+    height: 50px;
+  }
 }

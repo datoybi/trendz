@@ -1,10 +1,25 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/prop-types */
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import classes from "./Nav.module.css";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Nav = ({ refs }) => {
   const [keywordRef, youtubeRef, movieRef] = refs;
+  const { _, height } = useWindowDimensions();
+  const [fixedClass, setFixedClass] = useState("");
+
+  const handleScroll = () => {
+    if (window === undefined) return;
+    const currentHeight = window.scrollY;
+    currentHeight > height - 0.5 ? setFixedClass("fixed_nav") : setFixedClass("");
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSocialClick = () => {
     keywordRef.current.scrollIntoView({
@@ -12,14 +27,12 @@ const Nav = ({ refs }) => {
       block: "start",
     });
   };
-
   const handleEnterClick = () => {
     youtubeRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
-
   const handleCultureClick = () => {
     movieRef.current.scrollIntoView({
       behavior: "smooth",
@@ -28,7 +41,7 @@ const Nav = ({ refs }) => {
   };
 
   return (
-    <nav>
+    <nav className={classes[fixedClass]}>
       <span role="button" tabIndex={0} onClick={handleSocialClick}>
         사회
       </span>
@@ -42,4 +55,7 @@ const Nav = ({ refs }) => {
   );
 };
 
+Nav.propTypes = {
+  refs: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 export default Nav;
