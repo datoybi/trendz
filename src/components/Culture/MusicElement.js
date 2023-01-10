@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./SongElement.module.css";
+import classes from "./MusicElement.module.css";
 
-const SongElement = ({ song, rating }) => {
+const MusicElement = ({ song, rating }) => {
   return (
     <tr>
       <td className={classes.album__cover}>
@@ -16,7 +16,7 @@ const SongElement = ({ song, rating }) => {
   );
 };
 
-SongElement.propTypes = {
+MusicElement.propTypes = {
   song: PropTypes.exact({
     title: PropTypes.string,
     album: PropTypes.string,
@@ -26,4 +26,4 @@ SongElement.propTypes = {
   rating: PropTypes.number.isRequired,
 };
 
-export default SongElement;
+export default MusicElement;

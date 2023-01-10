@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import classes from "./SongTrend.module.css";
-import SongElement from "./SongElement";
+import classes from "./MusicTrend.module.css";
+import SongElement from "./MusicElement";
 import Table from "../UI/Table";
 
 const DEFAULT_SONG_TITLE = ["BTS", "Dynamite"];
 
-const SongTrend = () => {
+const MusicTrend = () => {
   const { songList } = useSelector(state => state.trend);
 
   const emptyHtml = (
@@ -57,4 +57,4 @@ const SongTrend = () => {
   );
 };
 
-export default SongTrend;
+export default MusicTrend;

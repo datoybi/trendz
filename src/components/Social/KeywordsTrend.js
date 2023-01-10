@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import KeywordTrend from "./KeywordTrend";
@@ -7,7 +7,7 @@ import { LOADING_KEYWORD_COUNT } from "../../constants/trendz";
 import { actions } from "../../store/slice";
 import plusIcon from "../../assets/plus_icon.png";
 
-const KeywordsTrend = () => {
+const KeywordsTrend = forwardRef((_, keywordRef) => {
   const items = useRef();
   const [keywordHeight, setKeywordHeight] = useState([]);
   const { keywords } = useSelector(state => state.trend);
@@ -51,7 +51,7 @@ const KeywordsTrend = () => {
     keywordTrend.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordTrend.length;
 
   return (
-    <section className={classes.keyword_section}>
+    <section className={classes.keyword_section} ref={keywordRef}>
       <div className={classes.keyword__Wrapper}>
         <h2 className="section__title">
           구글에 검색한 <br />
@@ -68,6 +68,6 @@ const KeywordsTrend = () => {
       </div>
     </section>
   );
-};
+});
 
 export default KeywordsTrend;

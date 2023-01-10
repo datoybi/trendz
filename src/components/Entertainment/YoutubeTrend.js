@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useSelector } from "react-redux";
 import classes from "./YoutubeTrend.module.css";
 
@@ -156,7 +156,7 @@ const youtubeJSON = [
   },
 ];
 
-const YouTubeTrend = () => {
+const YouTubeTrend = forwardRef((_, youtubeRef) => {
   // const { youtubeList } = useSelector(state => state.trend);
   const youtubeList = youtubeJSON;
 
@@ -187,7 +187,7 @@ const YouTubeTrend = () => {
   ));
 
   return (
-    <section className={classes.youtube__section}>
+    <section className={classes.youtube__section} ref={youtubeRef}>
       <div className={classes.youtube__wrapper}>
         <p className="section__title">
           24시간 동안 한국에서 <br />
@@ -197,6 +197,6 @@ const YouTubeTrend = () => {
       </div>
     </section>
   );
-};
+});
 
 export default YouTubeTrend;

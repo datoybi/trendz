@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import "./reset.css";
 import "./App.css";
 import Header from "./components/Layout/Header";
+import Nav from "./components/Layout/Nav";
 import Footer from "./components/Layout/Footer";
-import Social from "./components/Social/Social";
-import Culture from "./components/Culture/Culture";
-import Entertainment from "./components/Entertainment/Entertainment";
+import Home from "./components/Layout/Home";
+import KeywordsTrend from "./components/Social/KeywordsTrend";
+import NewsTrend from "./components/Social/NewsTrend";
+import MovieTrend from "./components/Culture/MovieTrend";
+import MusicTrend from "./components/Culture/MusicTrend";
+import TVTrend from "./components/Entertainment/TVTrend";
+import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
 
 import {
   fetchKeyword,
@@ -21,6 +26,11 @@ import {
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
+  const keywordRef = useRef(null);
+  const movieRef = useRef(null);
+  const youtubeRef = useRef(null);
+  // const option = { threshold: 0, rootMargin: `-${document.body.scrollHeight / 2 - 1}px 0px` };
+  // const option = {};
 
   useEffect(() => {
     const initData = async () => {
@@ -35,26 +45,87 @@ const App = () => {
     };
 
     initData();
+    // 로딩 다 되면 적용되게 해야함 아그러면 ref를 못찾..
+    // const observer = new IntersectionObserver(entry => {
+    //   console.log(entry);
+    //   if (entry[0].isIntersecting) {
+    //     console.log("요요요기기기기");
+    //     // newsRef.current.scrollIntoView();
+    //   }
+    // }, option);
+
+    // if (newsRef.current) {
+    //   observer.observe(newsRef.current);
+    // }
+    // return () => observer.disconnect();
   }, []);
+
+  const handleSocialClick = () => {
+    keywordRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleEnterClick = () => {
+    youtubeRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const handleCultureClick = () => {
+    movieRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <div className="App">
-      {isLoading ? (
-        <div>LOADING...</div>
-      ) : (
-        <>
-          <Header />
-          <main>
-            <article>
-              <Social />
-              <Culture />
-              <Entertainment />
-            </article>
-          </main>
-          <Footer />
-        </>
-      )}
+      <Home
+        handleSocialClick={handleSocialClick}
+        handleCultureClick={handleCultureClick}
+        handleEnterClick={handleEnterClick}
+      />
+      {/* <Header /> */}
+      <header>
+        <Nav
+          handleSocialClick={handleSocialClick}
+          handleCultureClick={handleCultureClick}
+          handleEnterClick={handleEnterClick}
+        />
+      </header>
+      <main>
+        <article>
+          <KeywordsTrend ref={keywordRef} />
+          <NewsTrend />
+          <YoutubeTrend ref={youtubeRef} />
+          <TVTrend />
+          <MovieTrend ref={movieRef} />
+          <MusicTrend />
+        </article>
+      </main>
+      <Footer />
     </div>
+    // <>
+    //   {isLoading ? (
+    //     <div>LOADING...</div>
+    //   ) : (
+    //     <div className="App">
+    //       <Home />
+    //       {/* <Header /> */}
+    //       <main ref={ref}>
+    //         <article>
+    //           <Social />
+    //           <Culture />
+    //           <Entertainment />
+    //         </article>
+    //       </main>
+    //       <Footer />
+    //     </div>
+    //   )}
+    // </>
   );
 };
 

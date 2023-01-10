@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+/* eslint-disable no-shadow */
+import React, { useRef, useState, forwardRef } from "react";
 import { useSelector } from "react-redux";
 import classes from "./MovieTrend.module.css";
 import nextIcon from "../../assets/next_icon.png";
@@ -7,7 +8,7 @@ import MovieElement from "./MovieElement";
 
 const DISPLAY_COUNT = 10;
 
-const MovieTrend = () => {
+const MovieTrend = forwardRef((_, movieRef) => {
   const items = useRef();
   const [carouselIndex, setCarouselIndex] = useState(0);
   const { movieList } = useSelector(state => state.trend);
@@ -40,7 +41,7 @@ const MovieTrend = () => {
   };
 
   return (
-    <section>
+    <section ref={movieRef}>
       <div className={classes.movie__wrapper}>
         <p className="section__title">
           요즘 상영하는 영화와 <br />
@@ -71,6 +72,6 @@ const MovieTrend = () => {
       </div>
     </section>
   );
-};
+});
 
 export default MovieTrend;
