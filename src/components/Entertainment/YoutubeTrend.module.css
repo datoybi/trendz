@@ -1,24 +1,19 @@
-.youtube__section {
+.section {
   background-color: #fafafa;
 }
 
-.youtube__wrapper {
+.section__inner {
   margin-bottom: 100px;
+  margin-top: 100px;
   width: 980px;
 }
 
-.section__title {
-  margin: 1rem 0;
-  font-weight: bold;
-  font-size: 1.4rem;
-}
-
-.youtube_list {
+.youtube-list {
   display: flex;
   flex-wrap: wrap;
 }
 
-.youtube_list li {
+.youtube-list li {
   margin-bottom: 40px;
   width: 14rem;
   height: 14rem;
@@ -30,34 +25,30 @@
   transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
 }
 
-.youtube_list > li:nth-child(4n) {
+.youtube-list > li:nth-child(4n) {
   margin-right: 0;
 }
 
-.youtube_list > li:hover {
+.youtube-list > li:hover {
   box-shadow: 2px 4px 16px rgb(0 0 0 / 16%);
   transform: scale3d(1.01, 1.01, 1.01);
 }
 
-/* .youtube_list li:nth-child(5n + 1) {
-  margin-left: 0;
-} */
-
-.youtube_list .item_link {
+.youtube-list .item_link {
   display: block;
   position: relative;
 }
 
-.img_wrap {
+.thumbnail {
   position: relative;
 }
 
-.youtube_list .item_link img,
-.youtube_list .img_wrap img {
+.youtube-list .item_link img,
+.youtube-list .thumbnail img {
   width: 14rem;
 }
 
-.youtube_list .item_link:after {
+.youtube-list .item_link:after {
   position: absolute;
   top: 0;
   right: 0;
@@ -67,7 +58,7 @@
   border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.youtube_list .rank {
+.ranking {
   position: absolute;
   padding-left: 5px;
   top: 0;
@@ -76,24 +67,19 @@
   text-align: center;
 }
 
-.youtube_list .rank .num {
+.ranking__text {
   display: block;
   font-size: 22px;
   line-height: 24px;
 }
 
-.youtube_list .info_wrap {
+.youtube-info {
   margin-top: 10px;
   position: relative;
   height: 80px;
 }
 
-.youtube_list .info {
-  height: 79px;
-  margin-left: 30px;
-}
-
-.youtube_list .info {
+.main-info {
   display: -webkit-box;
   padding-right: 10px;
   margin-left: 35px;
@@ -108,7 +94,7 @@
   color: #090909;
 }
 
-.youtube_list .title {
+.tmain-info__title {
   display: block;
   max-height: 38px;
   white-space: nowrap;
@@ -118,25 +104,14 @@
   text-overflow: ellipsis;
 }
 
-.youtube_list .host {
+.main-info__host {
   margin-top: 5px;
   color: gray;
   display: block;
   font-size: 0.9rem;
 }
 
-/* .youtube_list .view:before {
-  position: absolute;
-  top: 2px;
-  left: 0;
-  content: "";
-  width: 1rem;
-  height: 1rem;
-  background: url(../../assets/view.png) no-repeat;
-  background-size: 1rem;
-} */
-
-.youtube_list .view {
+.main-info__view {
   position: absolute;
   bottom: 10px;
   padding-left: 18px;

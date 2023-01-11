@@ -38,13 +38,13 @@ const TVTrend = () => {
   ));
 
   return (
-    <section className={classes.tv__section}>
-      <div className={classes.tv__wrapper}>
+    <section className={classes.section}>
+      <div className={classes.section__inner}>
         <p className="section__title">
           한 주간 높은 시청률을 기록한
           <br /> TV 프로그램을 알아보세요.
         </p>
-        <div className={classes.table_wrapper}>{tableHtml}</div>
+        <div className={classes["tv-tables"]}>{tableHtml}</div>
       </div>
     </section>
   );

@@ -1,5 +1,8 @@
+.music-table__tr td {
+  padding: 4px 35px;
+}
 
-.album__cover > img {
+.music-table__cover > img {
   width: 50px;
   border-radius: 3px;
 }

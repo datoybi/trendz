@@ -1,12 +1,12 @@
-.tv__section {
+.section {
   background-color: #fafafa;
 }
 
-.tv__wrapper {
+.section__inner {
   width: 980px;
   margin-bottom: 100px;
 }
 
-.table_wrapper {
+.tv-tables {
   display: flex;
 }

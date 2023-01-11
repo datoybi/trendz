@@ -4,8 +4,8 @@ import classes from "./MusicElement.module.css";
 
 const MusicElement = ({ song, rating }) => {
   return (
-    <tr>
-      <td className={classes.album__cover}>
+    <tr className={classes["music-table__tr"]}>
+      <td className={classes["music-table__cover"]}>
         <img src={song.albumCover} alt={`${song.title}_${song.album}`} />
       </td>
       <td>{rating}</td>

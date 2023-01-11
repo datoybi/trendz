@@ -13,7 +13,7 @@ const Nav = ({ refs }) => {
   const handleScroll = () => {
     if (window === undefined) return;
     const currentHeight = window.scrollY;
-    currentHeight > height - 0.5 ? setFixedClass("fixed_nav") : setFixedClass("");
+    currentHeight > height - 0.5 ? setFixedClass("position-fixed") : setFixedClass("");
   };
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Nav = ({ refs }) => {
       block: "start",
     });
   };
-  const handleEnterClick = () => {
+  const handleEntertainClick = () => {
     youtubeRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -41,14 +41,15 @@ const Nav = ({ refs }) => {
   };
 
   return (
-    <nav className={classes[fixedClass]}>
-      <span role="button" tabIndex={0} onClick={handleSocialClick}>
+    <nav className={`${classes[fixedClass]} ${classes.nav}`}>
+      <span className={classes.nav__logo}>Trendz</span>
+      <span className={classes.nav__tab} role="button" tabIndex={0} onClick={handleSocialClick}>
         사회
       </span>
-      <span role="button" tabIndex={0} onClick={handleEnterClick}>
-        엔터
+      <span className={classes.nav__tab} role="button" tabIndex={0} onClick={handleEntertainClick}>
+        엔터테이먼트
       </span>
-      <span role="button" tabIndex={0} onClick={handleCultureClick}>
+      <span className={classes.nav__tab} role="button" tabIndex={0} onClick={handleCultureClick}>
         문화
       </span>
     </nav>
@@ -58,4 +59,5 @@ const Nav = ({ refs }) => {
 Nav.propTypes = {
   refs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default Nav;

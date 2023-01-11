@@ -9,7 +9,7 @@ const slice = createSlice({
     keywordCount: LOADING_KEYWORD_COUNT,
     news: [],
     youtubeList: [],
-    songList: [],
+    musicList: [],
     movieList: [],
     moviePage: 1,
     TVList: [],
@@ -34,8 +34,8 @@ const slice = createSlice({
       state.youtubeList = action.payload;
     },
 
-    getSongList(state, action) {
-      state.songList = action.payload;
+    getMusicList(state, action) {
+      state.musicList = action.payload;
     },
 
     getMovieList(state, action) {

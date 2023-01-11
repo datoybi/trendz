@@ -13,15 +13,15 @@ const NewsTrend = () => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <li>
-        <p className={classes.news__title}>{title}</p>
+      <li className={classes.news__item}>
+        <p className={classes["news__item--title"]}>{title}</p>
       </li>
     </a>
   ));
 
   return (
-    <section className={classes.news__section}>
-      <div className={classes.news_wrapper}>
+    <section className={classes.section}>
+      <div className={classes.section__inner}>
         <p className="section__title">
           BBC Korea가 엄선한 <br />톱 뉴스를 접해보세요.
         </p>

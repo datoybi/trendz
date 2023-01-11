@@ -28,8 +28,6 @@ const App = () => {
   const keywordRef = useRef(null);
   const movieRef = useRef(null);
   const youtubeRef = useRef(null);
-  // const option = { threshold: 0, rootMargin: `-${document.body.scrollHeight / 2 - 1}px 0px` };
-  // const option = {};
 
   useEffect(() => {
     const initData = async () => {
@@ -42,21 +40,7 @@ const App = () => {
         await dispatch(fetchTV()),
       ]).then(setIsLoading(false));
     };
-
     initData();
-    // 로딩 다 되면 적용되게 해야함 아그러면 ref를 못찾..
-    // const observer = new IntersectionObserver(entry => {
-    //   console.log(entry);
-    //   if (entry[0].isIntersecting) {
-    //     console.log("요요요기기기기");
-    //     // newsRef.current.scrollIntoView();
-    //   }
-    // }, option);
-
-    // if (newsRef.current) {
-    //   observer.observe(newsRef.current);
-    // }
-    // return () => observer.disconnect();
   }, []);
 
   return (
@@ -77,24 +61,6 @@ const App = () => {
       </main>
       <Footer />
     </div>
-    // <>
-    //   {isLoading ? (
-    //     <div>LOADING...</div>
-    //   ) : (
-    //     <div className="App">
-    //       <Home />
-    //       {/* <Header /> */}
-    //       <main ref={ref}>
-    //         <article>
-    //           <Social />
-    //           <Culture />
-    //           <Entertainment />
-    //         </article>
-    //       </main>
-    //       <Footer />
-    //     </div>
-    //   )}
-    // </>
   );
 };
 

@@ -1,23 +1,26 @@
-.home_wrap {
+.home {
   display: flex;
   width: 100%;
-  height: 70%;
+  height: 65%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.home_wrap > h1 {
+.home__text {
   font-size: 4rem;
   color: #fff;
   font-family: "Pretendard Variable";
   font-variation-settings: "wght" 600, "wdth" 500, "GRAD" 200;
+  text-align: center;
+  background: linear-gradient(-45deg, #fff, #a9a9a9, #fff);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.home_wrap > h2 {
+.home > h2 {
   margin-top: 35px;
-  font-size: 2rem;
-  color: #fff;
-  font-family: "Pretendard Variable";
-  font-variation-settings: "wght" 600, "wdth" 500, "GRAD" 200;
+  font-size: 3rem;
 }

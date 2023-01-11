@@ -1,61 +1,66 @@
-.table_container {
+.tv-table-container {
   width: 50%;
   max-width: 600px;
   margin-right: 20px;
 }
 
-.tv_table th {
+.tv-table th {
   padding-top: 23px;
   padding-left: 35px;
   padding-bottom: 23px;
   font-weight: 600;
 }
 
-.tv_table tbody td {
-  padding: 20px 15px;
+.tv-table__tbody td {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.tv_table tbody td:nth-child(1) {
+.tv-table__tbody tr:nth-child(2n) {
+  background-color: #eaeaea;
+}
+
+.tv-table__td--ranking {
   padding-left: 35px;
   padding-right: 35px;
 }
 
-.tv_table tbody td:nth-child(2) {
+.tv-table__td--title {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.tv_table tbody td:nth-child(3) {
+.tv-table__td--cast {
   padding-left: 0;
   padding-right: 0;
 }
 
-.tv_table tbody td:nth-child(4) {
+.tv-table__td--rating {
   padding-left: 35px;
   padding-right: 35px;
 }
 
-.tv_table tbody tr:hover {
+.tv-table__tbody tr:hover {
   cursor: pointer;
   font-weight: bold;
 }
 
-.rate_col {
+.tv-table__col--ranking {
   width: 32%;
 }
 
-.program_col {
+.tv-table__col--program {
   width: 55%;
 }
 
-.channel_col {
+.tv-table__col--channel {
   width: 30%;
 }
 
-.program_tr {
+.tv-table__th--program {
   width: 70%;
 }
 
-.views_tr {
+.tv-table__th--rating {
   width: 40%;
 }

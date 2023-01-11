@@ -1,10 +1,10 @@
-.news__section {
+.section {
   background-color: #fff;
-  margin-top: 60px;
+  padding-top: 100px;
   padding-bottom: 60px;
 }
 
-.news_wrapper {
+.section__inner {
   width: 980px;
 }
 
@@ -14,7 +14,7 @@
   flex-wrap: wrap;
 }
 
-.news__list li {
+.news__item {
   box-shadow: 4px 12px 40px 6px rgb(0 0 0 / 9%);
   border-radius: 14px;
   padding: 20px;
@@ -24,7 +24,7 @@
   font-weight: 500;
 }
 
-.news__list .news__title {
+.news__item--title {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   white-space: normal;
@@ -33,11 +33,6 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 25px;
-}
-
-.news__update {
-  color: gray;
-  font-size: 1rem;
 }
 
 .news__list li:hover {

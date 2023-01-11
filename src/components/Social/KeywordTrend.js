@@ -1,43 +1,49 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import classes from "./KeywordsTrend.module.css";
-//  DOMPurify 같은걸로 snitalize 해주기
+import * as DOMPurify from "dompurify";
+import classes from "./KeywordTrend.module.css";
 
 const KeywordTrend = ({ getHeight, keyword, pastPubDate }) => {
-  const ref = useRef(null);
+  const liRef = useRef(null);
   const currentDate = new Date(keyword.pubDate).toLocaleDateString();
   const pastDate = pastPubDate && new Date(pastPubDate).toLocaleDateString();
+  const showDate = pastDate !== currentDate;
 
   useEffect(() => {
-    getHeight(ref.current.offsetHeight);
+    getHeight(liRef.current.offsetHeight);
   }, []);
 
   const keywordHTML = (
-    <li ref={ref}>
-      {pastDate !== currentDate && <span className={classes.searchWords_date}>{currentDate}</span>}
-      <div className={classes.keyword__element}>
-        <span className={classes.main__keyword}>{keyword.keyword}</span>
-        <span className={classes.keyword__traffic}>{keyword.traffic}회 이상 검색</span>
-        <div className={classes.news_wrapper}>
-          <div className={classes.news_wrap}>
+    <li ref={liRef}>
+      {showDate && <span className={classes["keyword-date"]}>{currentDate}</span>}
+      <div className={classes["keyword-info"]}>
+        <span className={classes["keyword-main"]}>{keyword.keyword}</span>
+        <span className={classes["keyword-traffic"]}>{keyword.traffic}회 이상 검색</span>
+        <div className={classes["keyword-news"]}>
+          <div className={classes["keyword-news__inner"]}>
             {keyword.news.map(newsElement => (
               <a
                 href={newsElement.url}
                 key={newsElement.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={classes["keyword-news__link"]}
               >
-                <p className={classes.keyword__news}>
-                  <span
-                    className={classes.title}
-                    dangerouslySetInnerHTML={{ __html: newsElement.title }}
+                <ul>
+                  <li
+                    className={classes["keyword-news__item"]}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(newsElement.title) }}
                   />
-                  <span className={classes.news_source}>{newsElement.source}</span>
-                </p>
+                  <li
+                    className={`${classes["keyword-news__item"]} ${classes["keyword-news__item-source"]}`}
+                  >
+                    {newsElement.source}
+                  </li>
+                </ul>
               </a>
             ))}
           </div>
-          <span className={classes.thumbnail}>
+          <span className={classes["keyword-news__thumbnail"]}>
             <img src={keyword.imgURL} alt={`${keyword.keyword} 대표사진`} />
           </span>
         </div>

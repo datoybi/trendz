@@ -5,10 +5,10 @@ import KeywordTrend from "./KeywordTrend";
 import classes from "./KeywordsTrend.module.css";
 import { LOADING_KEYWORD_COUNT } from "../../constants/trendz";
 import { actions } from "../../store/slice";
-import plusIcon from "../../assets/plus_icon.png";
+import loadIcon from "../../assets/plus_icon.png";
 
 const KeywordsTrend = forwardRef((_, keywordRef) => {
-  const items = useRef();
+  const keywordContainer = useRef();
   const [keywordHeight, setKeywordHeight] = useState([]);
   const { keywords } = useSelector(state => state.trend);
   const { keywordCount } = useSelector(state => state.trend);
@@ -20,7 +20,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
       return acc;
     }, 0);
 
-    items.current.style.height = `${height}px`;
+    keywordContainer.current.style.height = `${height}px`;
   };
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
     setKeywordHeight(prev => [...prev, height]);
   };
 
-  const keywordTrend = keywords.map((keyword, index) => (
+  const keywordElement = keywords.map((keyword, index) => (
     <KeywordTrend
       getHeight={getHeight}
       key={`${new Date(keyword.pubDate).getTime()}_${keyword.keyword}`}
@@ -42,27 +42,27 @@ const KeywordsTrend = forwardRef((_, keywordRef) => {
     />
   ));
 
-  const loadMoreKeyword = () => {
+  const loadKeyword = () => {
     calculateHeight();
     dispatch(actions.increaseKeywordCount());
   };
 
-  const showLoadingButton =
-    keywordTrend.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordTrend.length;
+  const showLoadButton =
+    keywordElement.length >= LOADING_KEYWORD_COUNT && keywordCount !== keywordElement.length;
 
   return (
-    <section className={classes.keyword_section} ref={keywordRef}>
-      <div className={classes.keyword__Wrapper}>
+    <section className={classes.section} ref={keywordRef}>
+      <div className={classes.section__inner}>
         <h2 className="section__title">
           구글에 검색한 <br />
           인기 급상승 키워드를 확인해보세요.
         </h2>
-        <div className={classes.items} ref={items}>
-          <ul className={classes.searchWords__list}>{keywordTrend}</ul>
+        <div className={classes["keyword-container"]} ref={keywordContainer}>
+          <ul>{keywordElement}</ul>
         </div>
-        {showLoadingButton && (
-          <button className={classes.show__more} type="button" onClick={loadMoreKeyword}>
-            <img src={plusIcon} alt="더보기" />
+        {showLoadButton && (
+          <button className={classes["keyword-load__button"]} type="button" onClick={loadKeyword}>
+            <img src={loadIcon} alt="더보기" />
           </button>
         )}
       </div>

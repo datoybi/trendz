@@ -25,13 +25,12 @@ article {
   align-items: center;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+header {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(-45deg, #f06844, #ee4c54, #d45e95, #9c6ca6, #6583c1);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
 }
 
 .App {
@@ -68,6 +67,7 @@ article {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: pre-wrap;
 }
 
 @keyframes gradient {
@@ -82,10 +82,11 @@ article {
   }
 }
 
-header {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(-45deg, #f06844, #ee4c54, #d45e95, #9c6ca6, #6583c1);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

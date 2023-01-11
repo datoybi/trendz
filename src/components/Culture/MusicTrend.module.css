@@ -1,47 +1,44 @@
-.song__section {
+.section {
   background-color: #fafafa;
+  padding-bottom: 120px;
 }
 
-.song__wrapper {
+.section__inner {
   width: 980px;
   margin-bottom: 100px;
 }
 
-.song_table th {
+.music-table__th {
   padding-top: 23px;
   padding-left: 35px;
   padding-bottom: 23px;
   font-weight: 600;
 }
 
-.song_table td {
-  padding: 4px 35px;
-}
-
-.title_tr {
+.music-table__th--title {
   width: 40%;
 }
 
-.singer_tr {
+.music-table__th--singer {
   width: 20%;
 }
 
-.album_tr {
+.music-table__th--album {
   width: 35%;
 }
 
-.cover_col {
+.music-table__col--cover {
   width: 10%;
 }
 
-.rating_col {
+.music-table__col--rating {
   width: 7%;
 }
 
-.title_col {
+.music-table__col--title {
   width: 35%;
 }
 
-tr:nth-child(2n) {
+.music-table tr:nth-child(2n) {
   background-color: #eaeaea;
 }

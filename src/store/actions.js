@@ -63,7 +63,7 @@ export const fetchMusic = () => {
     const url = `${musicProxy}${MUSIC_ENDPOINT}`;
     const htmlString = await sendRequest(url, ERROR_MESSAGES.MUSIC_FETCH_ERROR);
     const result = songCrawling(htmlString);
-    dispatch(actions.getSongList(result));
+    dispatch(actions.getMusicList(result));
   };
 };
 

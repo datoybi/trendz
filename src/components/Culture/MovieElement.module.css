@@ -1,21 +1,23 @@
-.wrapper {
+.movie {
   margin-bottom: 20px;
 }
 
-.movie_wrapper {
-  margin-bottom: 20px;
-}
-
-.poster {
+.movie-poster {
   position: relative;
 }
 
-.poster img {
+.movie-poster :hover {
+  opacity: 0.8;
+  transition: all 0.1s linear;
+}
+
+.movie-poster__image {
   width: 180px;
   height: 258px;
   border-radius: 10px;
 }
-.poster span {
+
+.movie-poster__ranking {
   font-size: 2rem;
   position: absolute;
   color: #fff;
@@ -25,30 +27,25 @@
   z-index: 1;
 }
 
-.rate_wrap {
+.movie-ranking {
   margin-bottom: 0.4rem;
 }
 
-.rate_wrap img {
+.movie-rating__image {
   width: 20px;
   position: relative;
   top: 5px;
 }
 
-.rate_wrap .rate {
+.movie-rating__text {
   font-size: 0.9rem;
   font-weight: bold;
   margin-left: 0.15rem;
 }
 
-.movie_name {
+.movie-title {
   display: block;
   font-size: 1rem;
   width: 180px;
   line-height: 20px;
-}
-
-.poster :hover > img {
-  opacity: 0.8;
-  transition: all 0.1s linear;
 }
