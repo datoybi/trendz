@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./TVElement.module.css";
+import styled from "@emotion/styled";
 import Table from "../UI/Table";
 import { TV_BASE_URL } from "../../constants/url";
 
@@ -28,40 +28,36 @@ const TVElement = ({ tvList = [], addTVRankCount, changeTVRank, getRank }) => {
     list.map((tv, index) => {
       calculateRanking(index, list);
       return (
-        <tr key={`${getRank()}_${tv.title}`} onClick={() => handleOnClick(tv.url)}>
-          <td className={classes["tv-table__td--ranking"]}>{getRank()}</td>
-          <td className={classes["tv-table__td--title"]}>
+        <Tr key={`${getRank()}_${tv.title}`} onClick={() => handleOnClick(tv.url)}>
+          <td>{getRank()}</td>
+          <td>
             <a href={`${TV_BASE_URL}${tv.url}`} target="_blank" rel="noopener noreferrer">
               {tv.title}
             </a>
           </td>
-          <td className={classes["tv-table__td--cast"]}>{tv.cast}</td>
-          <td className={classes["tv-table__td--rating"]}>{tv.rate}</td>
-        </tr>
+          <td>{tv.cast}</td>
+          <td>{tv.rate}</td>
+        </Tr>
       );
     });
 
   return (
-    <div className={classes["tv-table-container"]}>
-      <Table className={classes["tv-table"]}>
+    <TableWrapper>
+      <Table>
         <colgroup>
-          <col className={classes["tv-table__col--ranking"]} />
-          <col className={classes["tv-table__col--program"]} />
-          <col className={classes["tv-table__col--channel"]} />
+          <Col />
+          <Col />
+          <Col />
         </colgroup>
         <thead>
           <tr>
-            <th colSpan="3" className={classes["tv-table__th--program"]}>
-              프로그램
-            </th>
-            <th className={classes["tv-table__th--rating"]}>시청률</th>
+            <Th colSpan="3">프로그램</Th>
+            <Th>시청률</Th>
           </tr>
         </thead>
-        <tbody className={classes["tv-table__tbody"]}>
-          {tvList.length === 0 ? emptyHtml : tableContentHtml(tvList)}
-        </tbody>
+        <TBody>{tvList.length === 0 ? emptyHtml : tableContentHtml(tvList)}</TBody>
       </Table>
-    </div>
+    </TableWrapper>
   );
 };
 
@@ -73,3 +69,74 @@ TVElement.propTypes = {
 };
 
 export default TVElement;
+
+const TableWrapper = styled.div`
+  width: 50%;
+  max-width: 600px;
+  margin-right: 20px;
+`;
+
+const Th = styled.th`
+  padding-top: 23px;
+  padding-left: 35px;
+  padding-bottom: 23px;
+  font-weight: 600;
+
+  width: ${({ children }) => {
+    let neWidth = "0%";
+    if (children === "프로그램") {
+      neWidth = "70%";
+    } else if (children === "시청률") {
+      neWidth = "40%";
+    }
+    return neWidth;
+  }};
+`;
+
+const Col = styled.col`
+  &:nth-of-type(1) {
+    width: 32%;
+  }
+
+  &:nth-of-type(2) {
+    width: 55%;
+  }
+
+  &:nth-of-type(3) {
+    width: 30%;
+  }
+`;
+
+const TBody = styled.tbody`
+  & tr:nth-of-type(2n) {
+    background-color: #eaeaea;
+  }
+`;
+
+const Tr = styled.tr`
+  &:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  & > td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  & > td:nth-of-type(1),
+  & > td:nth-of-type(4) {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  & > td :nth-of-type(2) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  & > td :nth-of-type(3) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+`;

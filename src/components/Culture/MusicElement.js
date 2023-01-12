@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./MusicElement.module.css";
+import styled from "@emotion/styled";
 
 const MusicElement = ({ song, rating }) => {
   return (
-    <tr className={classes["music-table__tr"]}>
-      <td className={classes["music-table__cover"]}>
+    <tr>
+      <Td>
         <img src={song.albumCover} alt={`${song.title}_${song.album}`} />
-      </td>
-      <td>{rating}</td>
-      <td>{song.title}</td>
-      <td>{song.singer}</td>
-      <td>{song.album}</td>
+      </Td>
+      <Td>{rating}</Td>
+      <Td>{song.title}</Td>
+      <Td>{song.singer}</Td>
+      <Td>{song.album}</Td>
     </tr>
   );
 };
@@ -27,3 +27,12 @@ MusicElement.propTypes = {
 };
 
 export default MusicElement;
+
+const Td = styled.td`
+  padding: 4px 35px;
+
+  &:nth-of-type(1) > img {
+    width: 50px;
+    border-radius: 3px;
+  }
+`;

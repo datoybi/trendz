@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import styled from "@emotion/styled";
 
-import "./reset.css";
 import "./App.css";
 import Nav from "./components/Layout/Nav";
 import Footer from "./components/Layout/Footer";
@@ -13,14 +13,7 @@ import MusicTrend from "./components/Culture/MusicTrend";
 import TVTrend from "./components/Entertainment/TVTrend";
 import YoutubeTrend from "./components/Entertainment/YoutubeTrend";
 
-import {
-  fetchKeyword,
-  fetchMusic,
-  fetchTopNews,
-  fetchYoutube,
-  fetchTV,
-  fetchMovie,
-} from "./store/actions";
+import { fetchKeyword, fetchMusic, fetchTopNews, fetchYoutube, fetchTV, fetchMovie } from "./store/actions";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +37,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className={`App ${isLoading ? "blur" : ""}`}>
       <header>
         <Home />
         <Nav refs={[keywordRef, youtubeRef, movieRef]} />

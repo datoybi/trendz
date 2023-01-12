@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import { useSelector } from "react-redux";
-import classes from "./YoutubeTrend.module.css";
+import styled from "@emotion/styled";
 
 const YOUTUBE_PLAY_URL = "https://www.youtube.com/watch?v=";
 
@@ -8,8 +8,7 @@ const youtubeJSON = [
   {
     imgURL: "https://i.ytimg.com/vi/cgdne04i99I/maxresdefault.jpg",
     videoId: "cgdne04i99I",
-    title:
-      "[오늘 이 뉴스] \"태어나서 그런 불 처음 봤어요\" 부산 23층 건물 삼킨 '불기둥' (2023.01.09/MBC뉴스)",
+    title: "[오늘 이 뉴스] \"태어나서 그런 불 처음 봤어요\" 부산 23층 건물 삼킨 '불기둥' (2023.01.09/MBC뉴스)",
     host: "MBCNEWS",
     view: "505.92만 누적 조회수 ",
   },
@@ -51,8 +50,7 @@ const youtubeJSON = [
   {
     imgURL: "https://i.ytimg.com/vi/z0JraysWnNw/maxresdefault.jpg",
     videoId: "z0JraysWnNw",
-    title:
-      "GOAL | Hwang Hee-chan | Liverpool v Wolverhampton Wanderers | Third Round | Emirates FA Cup 2022-23",
+    title: "GOAL | Hwang Hee-chan | Liverpool v Wolverhampton Wanderers | Third Round | Emirates FA Cup 2022-23",
     host: " The Emirates FA Cup",
     view: " 32.44만 누적 조회수 ",
   },
@@ -80,8 +78,7 @@ const youtubeJSON = [
   {
     imgURL: "https://i.ytimg.com/vi/pXV-dJfu8JI/maxresdefault.jpg",
     videoId: "pXV-dJfu8JI",
-    title:
-      "[제37회 골든디스크] NewJeans - 'Opening + Attention (Golden Disc ver.) + Hype Boy + OMG' ♪｜JTBC 230107 방송",
+    title: "[제37회 골든디스크] NewJeans - 'Opening + Attention (Golden Disc ver.) + Hype Boy + OMG' ♪｜JTBC 230107 방송",
     host: " KPOP JAMM",
     view: " 186.74만 누적 조회수 ",
   },
@@ -117,16 +114,14 @@ const youtubeJSON = [
   {
     imgURL: "https://i.ytimg.com/vi/ukkAzff8_q0/maxresdefault.jpg",
     videoId: "ukkAzff8_q0",
-    title:
-      "[아형✪하이라이트] ＜재벌집 막내아들＞ 순양가가 떴다↗ '촬영 비하인드'부터 '송중기 에피소드'까지🔥 | 아는 형님 | JTBC 230107 방송",
+    title: "[아형✪하이라이트] ＜재벌집 막내아들＞ 순양가가 떴다↗ '촬영 비하인드'부터 '송중기 에피소드'까지🔥 | 아는 형님 | JTBC 230107 방송",
     host: " 아는형님 Knowingbros",
     view: " 71.99만 누적 조회수 ",
   },
   {
     imgURL: "https://i.ytimg.com/vi/yasvDkYWqww/maxresdefault.jpg",
     videoId: "yasvDkYWqww",
-    title:
-      "[4K 직캠] 박창근X동생 박창광 - 먼지가 되어 [불후의 명곡2 전설을 노래하다/Immortal Songs 2] | KBS 방송",
+    title: "[4K 직캠] 박창근X동생 박창광 - 먼지가 되어 [불후의 명곡2 전설을 노래하다/Immortal Songs 2] | KBS 방송",
     host: " KBS 레전드 케이팝",
     view: " 31.12만 누적 조회수 ",
   },
@@ -159,43 +154,161 @@ const YouTubeTrend = forwardRef((_, youtubeRef) => {
   // console.log(JSON.stringify(youtubeList));
 
   const contentsHtml = youtubeList.map((el, index) => (
-    <li key={el.videoId}>
+    <Item key={el.videoId}>
       <a href={`${YOUTUBE_PLAY_URL}${el.videoId}`} target="_blank" rel="noopener noreferrer">
-        <div className={classes.thumbnail}>
+        <YoutubeThumbnail>
           <img src={el.imgURL} alt={el.imgURL} />
-        </div>
-
-        <div className={classes["youtube-info"]}>
-          <div className={classes.ranking}>
-            <span className={classes.ranking__text}>
+        </YoutubeThumbnail>
+        <InfoWrapper>
+          <YoutubeRanking>
+            <RankingText>
               <span className="blind">랭킹</span>
               {index + 1}
-            </span>
-          </div>
-          <div className={classes["main-info"]}>
-            <span className={classes["main-info__title"]}>{el.title}</span>
-            <span className={classes["main-info__host"]}>{el.host}</span>
-            <span className={classes["main-info__view"]}>
+            </RankingText>
+          </YoutubeRanking>
+          <MainInfo>
+            <YoutubeTitle>{el.title}</YoutubeTitle>
+            <YoutubeHost>{el.host}</YoutubeHost>
+            <YoutubeView>
               <span className="blind">조회수</span>
               {`조회수 ${el.view.replace(" 누적 조회수", "")}`}
-            </span>
-          </div>
-        </div>
+            </YoutubeView>
+          </MainInfo>
+        </InfoWrapper>
       </a>
-    </li>
+    </Item>
   ));
 
   return (
-    <section className={classes.section} ref={youtubeRef}>
-      <div className={classes.section__inner}>
-        <p className="section__title">
+    <Section ref={youtubeRef}>
+      <Wrapper>
+        <SectionTitle>
           24시간 동안 한국에서 <br />
           가장 많이 본 유튜브를 시청하세요.
-        </p>
-        <ol className={classes["youtube-list"]}>{contentsHtml}</ol>
-      </div>
-    </section>
+        </SectionTitle>
+        <List>{contentsHtml}</List>
+      </Wrapper>
+    </Section>
   );
 });
 
 export default YouTubeTrend;
+
+const Section = styled.section`
+  background-color: #fafafa;
+`;
+
+const Wrapper = styled.div`
+  margin-bottom: 100px;
+  margin-top: 100px;
+  width: 980px;
+`;
+
+const SectionTitle = styled.h1`
+  margin-bottom: 48px;
+  margin-top: 48px;
+  font-size: 40px;
+  letter-spacing: 0.009em;
+  line-height: 50px;
+  font-family: "Pretendard Variable";
+  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
+  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: pre-wrap;
+`;
+
+const List = styled.ol`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Item = styled.li`
+  margin-bottom: 40px;
+  width: 14rem;
+  height: 14rem;
+  white-space: normal;
+  box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
+  border-radius: 18px;
+  margin-right: 20px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+
+  &:nth-of-type(4n) {
+    margin-right: 0;
+  }
+
+  &:hover {
+    box-shadow: 2px 4px 16px rgb(0 0 0 / 16%);
+    transform: scale3d(1.01, 1.01, 1.01);
+  }
+`;
+
+const YoutubeThumbnail = styled.div`
+  position: relative;
+
+  & > img {
+    width: 14rem;
+  }
+`;
+
+const InfoWrapper = styled.div`
+  margin-top: 10px;
+  position: relative;
+  height: 80px;
+`;
+
+const YoutubeRanking = styled.div`
+  position: absolute;
+  padding-left: 5px;
+  top: 0;
+  bottom: 1px;
+  width: 20px;
+  text-align: center;
+`;
+
+const RankingText = styled.span`
+  display: block;
+  font-size: 22px;
+  line-height: 24px;
+`;
+
+const MainInfo = styled.div`
+  display: -webkit-box;
+  padding-right: 10px;
+  margin-left: 35px;
+  overflow: hidden;
+  max-height: 40px;
+  font-size: 15px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  color: #090909;
+`;
+
+const YoutubeTitle = styled.div`
+  display: block;
+  max-height: 38px;
+  white-space: nowrap;
+  font-size: 1rem;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+`;
+const YoutubeHost = styled.div`
+  margin-top: 5px;
+  color: gray;
+  display: block;
+  font-size: 0.9rem;
+`;
+
+const YoutubeView = styled.div`
+  position: absolute;
+  bottom: 10px;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  right: 15px;
+`;

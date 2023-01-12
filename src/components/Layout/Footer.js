@@ -1,29 +1,52 @@
 import React from "react";
-import classes from "./Footer.module.css";
+import styled from "@emotion/styled";
 
 const Footer = () => {
   return (
-    <footer className={classes.footer}>
-      <div className={classes.footer__inner}>
-        <span className={classes.footer__text}>
+    <Wrapper>
+      <Inner>
+        <Text>
           © 2023 Trendz Created By&nbsp;
-          <a
-            className={classes["footer__text--decoration-underline"]}
-            href="https://github.com/datoybi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <UnderlineText href="https://github.com/datoybi" target="_blank" rel="noopener noreferrer">
             Dasom Yun
-          </a>
+          </UnderlineText>
           .
-        </span>
-        <span className={classes.footer__text}>
+        </Text>
+        <Text>
           Have some questions? Send an email to&nbsp;
-          <span className={classes["footer__text--decoration-underline"]}>dsy0302@gmail.com</span>.
-        </span>
-      </div>
-    </footer>
+          <UnderlineText>dsy0302@gmail.com</UnderlineText>.
+        </Text>
+      </Inner>
+    </Wrapper>
   );
 };
 
 export default Footer;
+
+const Wrapper = styled.footer`
+  width: 100%;
+  border-top: 1px solid;
+  border-image: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
+  border-image-slice: 1;
+  height: 200px;
+`;
+
+const Inner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const Text = styled.span`
+  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 8px;
+  font-size: 0.9rem;
+`;
+
+const UnderlineText = styled.a`
+  background: linear-gradient(to top, #9c6ca6 3%, transparent 0%);
+`;

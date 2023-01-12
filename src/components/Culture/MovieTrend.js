@@ -1,6 +1,6 @@
 import React, { useRef, useState, forwardRef } from "react";
 import { useSelector } from "react-redux";
-import classes from "./MovieTrend.module.css";
+import styled from "@emotion/styled";
 import carouselNextIcon from "../../assets/next_icon.png";
 import carouselPrevIcon from "../../assets/prev_icon.png";
 import MovieElement from "./MovieElement";
@@ -16,22 +16,22 @@ const MovieTrend = forwardRef((_, movieRef) => {
   const secondMovieList = movieList.filter((_, index) => index >= DISPLAY_COUNT);
 
   const movieHTML = (
-    <div className={classes["carousel-section"]} ref={items}>
+    <CarouselSections ref={items}>
       <div>
-        <div className={classes["carousel-section--order-first"]}>
+        <CarouselSection>
           {firstMovieList.map(movie => (
             <MovieElement key={movie.title} movie={movie} />
           ))}
-        </div>
+        </CarouselSection>
       </div>
       <div>
-        <div className={classes["carousel-section--order-second"]}>
+        <CarouselSection>
           {secondMovieList.map(movie => (
             <MovieElement key={movie.title} movie={movie} />
           ))}
-        </div>
+        </CarouselSection>
       </div>
-    </div>
+    </CarouselSections>
   );
 
   const toggleOnClick = newIndex => {
@@ -40,36 +40,88 @@ const MovieTrend = forwardRef((_, movieRef) => {
   };
 
   return (
-    <section className={classes.section} ref={movieRef}>
-      <div className={classes.section__inner}>
-        <h1 className="section__title">
+    <Section ref={movieRef}>
+      <Wrapper>
+        <SectionTitle>
           요즘 상영하는 영화와 <br />
           예매 순위를 알아보세요.
-        </h1>
-        <div className={classes.carousel}>
-          <div className={classes["carousel__view"]}>{movieHTML}</div>
+        </SectionTitle>
+        <div>
+          <CarouselWrapper>{movieHTML}</CarouselWrapper>
           {carouselIndex === 0 && (
-            <button
-              type="button"
-              className={`${classes["carousel__button"]} ${classes["carousel__button--next"]}`}
-              onClick={() => toggleOnClick(1)}
-            >
+            <CarouselButton type="button" onClick={() => toggleOnClick(1)}>
               <img src={carouselNextIcon} alt="다음영화 순위보기" />
-            </button>
+            </CarouselButton>
           )}
           {carouselIndex === 1 && (
-            <button
-              type="button"
-              className={`${classes["carousel__button"]} ${classes["carousel__button--prev"]}`}
-              onClick={() => toggleOnClick(0)}
-            >
+            <CarouselButton prev type="button" onClick={() => toggleOnClick(0)}>
               <img src={carouselPrevIcon} alt="이전영화 순위보기" />
-            </button>
+            </CarouselButton>
           )}
         </div>
-      </div>
-    </section>
+      </Wrapper>
+    </Section>
   );
 });
 
 export default MovieTrend;
+
+const Section = styled.section`
+  background-color: #fff;
+`;
+
+const Wrapper = styled.div`
+  margin-bottom: 20px;
+  margin-top: 100px;
+  width: 980px;
+`;
+
+const SectionTitle = styled.h1`
+  margin-bottom: 48px;
+  margin-top: 48px;
+  font-size: 40px;
+  letter-spacing: 0.009em;
+  line-height: 50px;
+  font-family: "Pretendard Variable";
+  font-variation-settings: "wght" 1000, "wdth" 500, "GRAD" 200;
+  background: linear-gradient(to right, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: pre-wrap;
+`;
+
+const CarouselWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const CarouselButton = styled.button`
+  position: relative;
+  font-size: 1rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  bottom: 386px;
+  left: ${props => (props.prev ? "-35px" : "958px")};
+
+  & > img {
+    width: 45px;
+  }
+
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+
+const CarouselSections = styled.div`
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s;
+`;
+
+const CarouselSection = styled.div`
+  width: 980px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
